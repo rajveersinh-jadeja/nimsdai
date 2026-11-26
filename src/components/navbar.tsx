@@ -160,7 +160,7 @@ export function Navbar({
         __lenis?: {
           scrollTo: (
             target: HTMLElement | number,
-            options?: { offset?: number; immediate?: boolean; duration?: number; onComplete?: () => void }
+            options?: { offset?: number; immediate?: boolean; duration?: number; easing?: (t: number) => number; onComplete?: () => void }
           ) => void
         }
       }).__lenis;
