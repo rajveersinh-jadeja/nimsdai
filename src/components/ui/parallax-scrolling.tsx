@@ -513,8 +513,6 @@ export function ParallaxComponent({
 
           </div>
 
-          </div>
-
           {/* Section 2: 14 Peaks Project Possible (#peaks) */}
           <div id="peaks" className="scroll-mt-28 space-y-12 sm:space-y-14 relative">
             {/* Hero Banner with Authentic Mountain Background & Cursive Signature */}
