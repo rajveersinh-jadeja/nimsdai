@@ -358,95 +358,125 @@ export function ParallaxComponent({
               </div>
             </div>
 
-            {/* Chronological Heritage Timeline (The Journey) */}
-            <div data-reveal className="space-y-8">
+            {/* Chronological Heritage Timeline (The Journey) — Connected Minimalist Trail with Glowing Milestone Nodes */}
+            <div data-reveal className="space-y-10">
               <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-white/[0.08] pb-4 gap-2">
                 <div>
-                  <span className="font-heading text-xs font-semibold uppercase tracking-widest text-neutral-400">
-                    The Chronicle
-                  </span>
-                  <h3 className="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight mt-1">
+                  <div className="flex items-center gap-2 font-heading text-xs font-semibold uppercase tracking-widest text-neutral-400">
+                    <span className="w-5 h-px bg-white/40" />
+                    <span>The Chronicle</span>
+                  </div>
+                  <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mt-1">
                     Timeline of Endurance
                   </h3>
                 </div>
-                <span className="font-mono text-xs text-neutral-400">2003 &mdash; 2021 &middot; 4 Pivotal Chapters</span>
+                <span className="font-mono text-xs text-neutral-400">2003 &mdash; 2021 &middot; 4 Historic Milestones</span>
               </div>
 
-              {/* 4-Step Interactive Horizontal / Stacked Timeline */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {/* Step 1: Gurkha Selection */}
-                <div className="p-6 rounded-2xl bg-[#080c14] border border-white/[0.08] hover:border-white/25 transition-all duration-300 flex flex-col justify-between space-y-6 group">
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono text-xs text-neutral-400 font-bold">01</span>
-                      <span className="px-2.5 py-0.5 rounded-full bg-white/10 text-white font-mono text-[11px]">2003</span>
-                    </div>
-                    <h4 className="font-display text-xl font-bold text-white group-hover:text-white transition-colors">
-                      The Gurkhas
-                    </h4>
-                    <p className="font-body text-xs text-neutral-400 leading-relaxed">
-                      Enlisted in the British Army Brigade of Gurkhas, following family tradition into one of the most feared infantry units in military history.
-                    </p>
-                  </div>
-                  <div className="pt-4 border-t border-white/[0.06] text-[11px] font-mono text-neutral-400 uppercase tracking-wider">
-                    Infantry &middot; Nepal
-                  </div>
-                </div>
+              {/* Connected Timeline Trail: Glowing Continuous Wire with Interactive Milestone Nodes */}
+              <div className="relative pt-6">
+                {/* Desktop Continuous Glowing Rail */}
+                <div className="hidden lg:block absolute top-[43px] left-8 right-8 h-0.5 bg-gradient-to-r from-white/30 via-white/50 to-white/20 z-0 pointer-events-none" />
 
-                {/* Step 2: SBS Selection */}
-                <div className="p-6 rounded-2xl bg-[#080c14] border border-white/[0.08] hover:border-white/25 transition-all duration-300 flex flex-col justify-between space-y-6 group">
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono text-xs text-neutral-400 font-bold">02</span>
-                      <span className="px-2.5 py-0.5 rounded-full bg-white/10 text-white font-mono text-[11px]">2009</span>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
+                  {/* Milestone 1: 2003 */}
+                  <div className="flex flex-col space-y-4 group">
+                    <div className="flex items-center gap-4">
+                      <div className="w-9 h-9 rounded-full bg-[#05070c] border-2 border-white flex items-center justify-center font-mono text-xs font-bold text-white shadow-[0_0_16px_rgba(255,255,255,0.4)] group-hover:scale-110 transition-transform">
+                        01
+                      </div>
+                      <span className="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white font-mono text-xs font-semibold">
+                        2003
+                      </span>
                     </div>
-                    <h4 className="font-display text-xl font-bold text-white group-hover:text-white transition-colors">
-                      UK Special Boat Service
-                    </h4>
-                    <p className="font-body text-xs text-neutral-400 leading-relaxed">
-                      Became the first Gurkha to pass UK SBS Selection. Specialised in cold-weather warfare and high-altitude covert mountain operations.
-                    </p>
-                  </div>
-                  <div className="pt-4 border-t border-white/[0.06] text-[11px] font-mono text-neutral-400 uppercase tracking-wider">
-                    Special Forces &middot; UK
-                  </div>
-                </div>
 
-                {/* Step 3: Project Possible */}
-                <div className="p-6 rounded-2xl bg-[#080c14] border border-white/[0.08] hover:border-white/25 transition-all duration-300 flex flex-col justify-between space-y-6 group">
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono text-xs text-neutral-400 font-bold">03</span>
-                      <span className="px-2.5 py-0.5 rounded-full bg-white/10 text-white font-mono text-[11px]">2019</span>
+                    <div className="p-6 rounded-2xl bg-[#080d16]/90 border border-white/[0.08] group-hover:border-white/30 group-hover:bg-[#0c1322] transition-all duration-300 space-y-3 shadow-lg">
+                      <h4 className="font-display text-xl font-bold text-white">
+                        The Gurkhas
+                      </h4>
+                      <p className="font-body text-xs sm:text-sm text-neutral-300 leading-relaxed">
+                        Enlisted in the British Army Brigade of Gurkhas, carrying forward Nepali heritage into one of the most storied combat forces in the world.
+                      </p>
+                      <div className="pt-3 border-t border-white/[0.06] text-[11px] font-mono text-neutral-400 uppercase tracking-wider flex items-center justify-between">
+                        <span>Brigade Enlistment</span>
+                        <span className="text-white/60">Nepal</span>
+                      </div>
                     </div>
-                    <h4 className="font-display text-xl font-bold text-white group-hover:text-white transition-colors">
-                      Project Possible
-                    </h4>
-                    <p className="font-body text-xs text-neutral-400 leading-relaxed">
-                      Resigned pension from SBS to climb all 14 8,000m summits. Shattered the world record in 6 months and 6 days with 0 casualties.
-                    </p>
                   </div>
-                  <div className="pt-4 border-t border-white/[0.06] text-[11px] font-mono text-neutral-400 uppercase tracking-wider">
-                    189 Days &middot; World Record
-                  </div>
-                </div>
 
-                {/* Step 4: K2 Winter */}
-                <div className="p-6 rounded-2xl bg-[#080c14] border border-white/[0.08] hover:border-white/25 transition-all duration-300 flex flex-col justify-between space-y-6 group">
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono text-xs text-neutral-400 font-bold">04</span>
-                      <span className="px-2.5 py-0.5 rounded-full bg-white/10 text-white font-mono text-[11px]">2021</span>
+                  {/* Milestone 2: 2009 */}
+                  <div className="flex flex-col space-y-4 group">
+                    <div className="flex items-center gap-4">
+                      <div className="w-9 h-9 rounded-full bg-[#05070c] border-2 border-white flex items-center justify-center font-mono text-xs font-bold text-white shadow-[0_0_16px_rgba(255,255,255,0.4)] group-hover:scale-110 transition-transform">
+                        02
+                      </div>
+                      <span className="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white font-mono text-xs font-semibold">
+                        2009
+                      </span>
                     </div>
-                    <h4 className="font-display text-xl font-bold text-white group-hover:text-white transition-colors">
-                      K2 First Winter Ascent
-                    </h4>
-                    <p className="font-body text-xs text-neutral-400 leading-relaxed">
-                      Conquered the &apos;Savage Mountain&apos; in harsh sub-zero winter conditions, stepping onto the summit together as an all-Nepali team.
-                    </p>
+
+                    <div className="p-6 rounded-2xl bg-[#080d16]/90 border border-white/[0.08] group-hover:border-white/30 group-hover:bg-[#0c1322] transition-all duration-300 space-y-3 shadow-lg">
+                      <h4 className="font-display text-xl font-bold text-white">
+                        UK SBS Special Forces
+                      </h4>
+                      <p className="font-body text-xs sm:text-sm text-neutral-300 leading-relaxed">
+                        First Gurkha to pass UK Special Boat Service selection. Commanded arctic mountain warfare and classified high-altitude winter operations.
+                      </p>
+                      <div className="pt-3 border-t border-white/[0.06] text-[11px] font-mono text-neutral-400 uppercase tracking-wider flex items-center justify-between">
+                        <span>SBS Selection</span>
+                        <span className="text-white/60">United Kingdom</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="pt-4 border-t border-white/[0.06] text-[11px] font-mono text-neutral-400 uppercase tracking-wider">
-                    8,611m &middot; Historic First
+
+                  {/* Milestone 3: 2019 */}
+                  <div className="flex flex-col space-y-4 group">
+                    <div className="flex items-center gap-4">
+                      <div className="w-9 h-9 rounded-full bg-[#05070c] border-2 border-white flex items-center justify-center font-mono text-xs font-bold text-white shadow-[0_0_16px_rgba(255,255,255,0.4)] group-hover:scale-110 transition-transform">
+                        03
+                      </div>
+                      <span className="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white font-mono text-xs font-semibold">
+                        2019
+                      </span>
+                    </div>
+
+                    <div className="p-6 rounded-2xl bg-[#080d16]/90 border border-white/[0.08] group-hover:border-white/30 group-hover:bg-[#0c1322] transition-all duration-300 space-y-3 shadow-lg">
+                      <h4 className="font-display text-xl font-bold text-white">
+                        Project Possible
+                      </h4>
+                      <p className="font-body text-xs sm:text-sm text-neutral-300 leading-relaxed">
+                        Climbed all 14 peaks above 8,000 meters in 6 months and 6 days &mdash; demolishing the previous 7-year record with 0 team fatalities.
+                      </p>
+                      <div className="pt-3 border-t border-white/[0.06] text-[11px] font-mono text-neutral-400 uppercase tracking-wider flex items-center justify-between">
+                        <span>189-Day Record</span>
+                        <span className="text-white/60">14 Summits</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Milestone 4: 2021 */}
+                  <div className="flex flex-col space-y-4 group">
+                    <div className="flex items-center gap-4">
+                      <div className="w-9 h-9 rounded-full bg-[#05070c] border-2 border-white flex items-center justify-center font-mono text-xs font-bold text-white shadow-[0_0_16px_rgba(255,255,255,0.4)] group-hover:scale-110 transition-transform">
+                        04
+                      </div>
+                      <span className="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white font-mono text-xs font-semibold">
+                        2021
+                      </span>
+                    </div>
+
+                    <div className="p-6 rounded-2xl bg-[#080d16]/90 border border-white/[0.08] group-hover:border-white/30 group-hover:bg-[#0c1322] transition-all duration-300 space-y-3 shadow-lg">
+                      <h4 className="font-display text-xl font-bold text-white">
+                        K2 First Winter Ascent
+                      </h4>
+                      <p className="font-body text-xs sm:text-sm text-neutral-300 leading-relaxed">
+                        First human winter ascent of K2 at -65&deg;C. Paused 10m below summit so 10 Nepali climbers joined arms to step onto the top together.
+                      </p>
+                      <div className="pt-3 border-t border-white/[0.06] text-[11px] font-mono text-neutral-400 uppercase tracking-wider flex items-center justify-between">
+                        <span>8,611m Winter</span>
+                        <span className="text-white/60">Pakistan</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
