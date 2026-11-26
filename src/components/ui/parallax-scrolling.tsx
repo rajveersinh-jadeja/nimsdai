@@ -283,138 +283,175 @@ export function ParallaxComponent({
         <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 space-y-32 sm:space-y-44 lg:space-y-52">
 
           {/* Section 1: Our Story (#story) — Editorial Biography & Heritage */}
-          <div id="story" className="scroll-mt-28 relative">
-            {/* Atmospheric Right-Side Portrait & Narrative Fold */}
-            <div className="relative pt-10 sm:pt-14 pb-12 sm:pb-16">
-              {/* Right-anchored monochrome mountain portrait blending seamlessly into #05070c */}
-              <div className="hidden md:block absolute -top-6 right-0 w-[62%] lg:w-[58%] h-[460px] lg:h-[520px] pointer-events-none select-none overflow-hidden">
+          <div id="story" className="scroll-mt-28 space-y-12 sm:space-y-16 relative">
+            
+            {/* Top Atmospheric Hero Card: Full-Bleed Alpine Backdrop & Editorial Typography */}
+            <div data-reveal className="relative rounded-3xl bg-[#070b13] border border-white/[0.08] overflow-hidden p-8 sm:p-12 lg:p-16 min-h-[500px] flex flex-col justify-between shadow-[0_24px_64px_rgba(0,0,0,0.7)] group">
+              {/* Full-Bleed Atmospheric Background Portrait */}
+              <div className="absolute right-0 top-0 w-full md:w-3/5 h-full overflow-hidden pointer-events-none select-none z-0">
                 <img
                   src="/images/nimsdai-pose.webp"
-                  alt=""
-                  aria-hidden="true"
-                  className="w-full h-full object-cover object-[50%_18%] grayscale contrast-[1.2] brightness-[0.82] opacity-80"
+                  alt="Nimsdai in high-altitude alpine terrain"
+                  className="w-full h-full object-cover object-[55%_18%] grayscale contrast-[1.25] brightness-[0.75] transition-transform duration-1000 group-hover:scale-103"
                 />
-                {/* Multi-directional obsidian fades for seamless integration */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#05070c] via-[#05070c]/55 to-transparent" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#05070c] via-transparent to-[#05070c]/85" />
-                <div className="absolute inset-0 bg-gradient-to-l from-[#05070c]/80 via-transparent to-transparent" />
+                {/* Seamless Multi-Directional Gradient Fades */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#070b13] via-[#070b13]/85 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#070b13] via-transparent to-[#070b13]/60" />
               </div>
 
-              {/* Mobile Portrait Header */}
-              <div className="md:hidden relative w-full h-64 mb-8 rounded-2xl overflow-hidden border border-white/[0.08]">
-                <img
-                  src="/images/nimsdai-pose.webp"
-                  alt="Nirmal Nims Purja MBE in Himalayan expedition gear"
-                  className="w-full h-full object-cover object-[50%_18%] grayscale contrast-[1.18] brightness-[0.85]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#05070c] via-transparent to-transparent" />
+              {/* Top Meta Indicator */}
+              <div className="relative z-10 flex items-center gap-2.5 font-heading text-xs font-semibold uppercase tracking-[0.2em] text-neutral-400">
+                <span className="w-6 h-px bg-white/40" />
+                <span>01 &mdash; Biography &amp; Heritage</span>
               </div>
 
-              {/* Left Editorial Copy */}
-              <div data-reveal className="relative z-10 max-w-2xl space-y-4">
-                <div className="font-heading text-xs font-semibold uppercase tracking-wider text-neutral-400">
-                  01 &mdash; Biography &amp; Heritage
-                </div>
-
-                <h2 className="font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-[-0.03em] text-white leading-[1.02]">
+              {/* Main Headline & Narrative */}
+              <div className="relative z-10 max-w-xl space-y-5 my-auto py-8">
+                <h2 className="font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-[-0.035em] text-white leading-[1.02]">
                   Soldier to<br />
                   Pioneer
                 </h2>
-
                 <p className="font-body text-sm sm:text-base text-neutral-300 leading-relaxed max-w-lg">
-                  Born in Dana, Myagdi District, Nepal. Nirmal &quot;Nims&quot; Purja MBE served 6 years with the Gurkhas and 10 years in the UK Special Boat Service (SBS) before attempting all 14 peaks above 8,000 meters.
+                  Born in Dana, Myagdi District, Nepal. Nirmal &quot;Nims&quot; Purja MBE served 6 years with the prestigious Gurkhas and 10 years in the UK Special Boat Service (SBS) before setting out to redefine human capability across the world&apos;s 14 highest summits.
                 </p>
+                <div className="flex items-center gap-4 pt-2">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white font-mono text-xs">
+                    <span>16 Years Elite Military Service</span>
+                  </div>
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white font-mono text-xs">
+                    <span>MBE Honoree</span>
+                  </div>
+                </div>
               </div>
 
-              {/* 3-Column Editorial Feature Row */}
-              <div data-reveal className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 mt-14 sm:mt-20 pt-8 border-t border-white/[0.08]">
-                {/* Pillar 1: Gurkhas & UK SBS */}
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-[#0c1018] border border-white/10 flex items-center justify-center shrink-0 text-neutral-300">
-                    <Mountains className="w-4 h-4" weight="duotone" />
-                  </div>
-                  <div className="space-y-1.5">
-                    <h3 className="font-display text-base sm:text-lg font-bold text-white tracking-tight">
-                      Gurkhas &amp; UK SBS
-                    </h3>
-                    <p className="font-body text-xs sm:text-[13px] text-neutral-400 leading-relaxed">
-                      First Gurkha to pass selection for the UK Special Boat Service, mastering cold-weather operations and extreme tactical leadership.
-                    </p>
-                  </div>
-                </div>
+              {/* Bottom Quote Strip */}
+              <div className="relative z-10 pt-6 border-t border-white/[0.08] flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs text-neutral-400 gap-2">
+                <span className="font-mono tracking-wider">&ldquo;GIVE EVERYTHING OR DO NOT START.&rdquo;</span>
+                <span className="text-white/60 font-heading">Dana, Myagdi &rarr; Special Boat Service &rarr; 8,000m Peaks</span>
+              </div>
+            </div>
 
-                {/* Pillar 2: 14 Peaks: Netflix */}
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-[#0c1018] border border-white/10 flex items-center justify-center shrink-0 text-neutral-300">
-                    <Play className="w-4 h-4" weight="duotone" />
+            {/* 3 Interactive Cards with Micro-Interactions & Hover Polish */}
+            <div data-reveal className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
+              {/* Card 1: Gurkhas & UK SBS */}
+              <div className="p-7 sm:p-8 rounded-2xl bg-[#090d16] border border-white/[0.08] flex flex-col justify-between space-y-6 hover:border-white/25 hover:bg-[#0c121e] transition-all duration-300 group shadow-lg">
+                <div className="space-y-4">
+                  <div className="w-12 h-12 rounded-xl bg-[#0f1523] border border-white/10 flex items-center justify-center text-white group-hover:scale-105 transition-transform">
+                    <ShieldCheck className="w-5 h-5 text-white" weight="duotone" />
                   </div>
-                  <div className="space-y-1.5">
-                    <h3 className="font-display text-base sm:text-lg font-bold text-white tracking-tight">
-                      14 Peaks: Netflix
-                    </h3>
-                    <p className="font-body text-xs sm:text-[13px] text-neutral-400 leading-relaxed">
-                      The acclaimed 2021 documentary brought the inspiring spirit of Nepali climbers and Project Possible to millions worldwide.
-                    </p>
-                  </div>
+                  <h3 className="font-display text-xl sm:text-2xl font-bold text-white tracking-tight">
+                    Gurkhas &amp; UK SBS
+                  </h3>
+                  <p className="font-body text-xs sm:text-sm text-neutral-400 leading-relaxed">
+                    First Gurkha in British military history to pass selection for the elite Special Boat Service (SBS), mastering Arctic warfare and extreme tactical operations.
+                  </p>
                 </div>
+                <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono text-neutral-400">
+                  <span>Special Forces</span>
+                  <span className="text-white/80">2003 &ndash; 2019</span>
+                </div>
+              </div>
 
-                {/* Pillar 3: Beyond Possible */}
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-[#0c1018] border border-white/10 flex items-center justify-center shrink-0 text-neutral-300">
-                    <BookOpen className="w-4 h-4" weight="duotone" />
+              {/* Card 2: 14 Peaks Documentary */}
+              <div className="p-7 sm:p-8 rounded-2xl bg-[#090d16] border border-white/[0.08] flex flex-col justify-between space-y-6 hover:border-white/25 hover:bg-[#0c121e] transition-all duration-300 group shadow-lg">
+                <div className="space-y-4">
+                  <div className="w-12 h-12 rounded-xl bg-[#0f1523] border border-white/10 flex items-center justify-center text-white group-hover:scale-105 transition-transform">
+                    <Play className="w-5 h-5 text-white" weight="duotone" />
                   </div>
-                  <div className="space-y-1.5">
-                    <h3 className="font-display text-base sm:text-lg font-bold text-white tracking-tight">
-                      Beyond Possible
-                    </h3>
-                    <p className="font-body text-xs sm:text-[13px] text-neutral-400 leading-relaxed">
-                      Bestselling memoir chronicling his life in the Death Zone, mental resilience, and the relentless drive to defy perceived human limits.
-                    </p>
+                  <h3 className="font-display text-xl sm:text-2xl font-bold text-white tracking-tight">
+                    14 Peaks: Netflix
+                  </h3>
+                  <p className="font-body text-xs sm:text-sm text-neutral-400 leading-relaxed">
+                    The acclaimed global documentary brought the extraordinary spirit and skill of Nepali Sherpa climbers to millions, earning critical worldwide acclaim.
+                  </p>
+                </div>
+                <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono text-neutral-400">
+                  <span>Global Release</span>
+                  <span className="text-white/80">Netflix 2021</span>
+                </div>
+              </div>
+
+              {/* Card 3: Beyond Possible */}
+              <div className="p-7 sm:p-8 rounded-2xl bg-[#090d16] border border-white/[0.08] flex flex-col justify-between space-y-6 hover:border-white/25 hover:bg-[#0c121e] transition-all duration-300 group shadow-lg">
+                <div className="space-y-4">
+                  <div className="w-12 h-12 rounded-xl bg-[#0f1523] border border-white/10 flex items-center justify-center text-white group-hover:scale-105 transition-transform">
+                    <BookOpen className="w-5 h-5 text-white" weight="duotone" />
                   </div>
+                  <h3 className="font-display text-xl sm:text-2xl font-bold text-white tracking-tight">
+                    Beyond Possible
+                  </h3>
+                  <p className="font-body text-xs sm:text-sm text-neutral-400 leading-relaxed">
+                    Sunday Times bestselling memoir detailing the physical toll of the Death Zone, psychological endurance, and the philosophy of human limitlessness.
+                  </p>
+                </div>
+                <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono text-neutral-400">
+                  <span>Bestseller</span>
+                  <span className="text-white/80">Hodder &amp; Stoughton</span>
                 </div>
               </div>
             </div>
 
-            {/* Bottom Split Highlight Banner: Historic Speed Record */}
-            <div data-reveal className="relative rounded-2xl bg-[#090c12] border border-white/[0.09] overflow-hidden grid grid-cols-1 md:grid-cols-12 items-stretch shadow-[0_16px_48px_rgba(0,0,0,0.55)]">
-              {/* Left Narrative Half */}
-              <div className="md:col-span-6 p-7 sm:p-9 lg:p-10 flex items-start gap-5 relative z-10">
-                <div className="w-11 h-11 rounded-xl bg-[#0f141e] border border-white/10 flex items-center justify-center shrink-0 text-neutral-300 mt-0.5">
-                  <Timer className="w-5 h-5" weight="duotone" />
+            {/* Bottom Telemetry Split Banner: Historic Speed Record */}
+            <div data-reveal className="relative rounded-3xl bg-[#080c14] border border-white/[0.09] overflow-hidden grid grid-cols-1 md:grid-cols-12 items-stretch shadow-[0_20px_50px_rgba(0,0,0,0.65)]">
+              {/* Left Column: Context & Narrative */}
+              <div className="md:col-span-7 p-8 sm:p-10 lg:p-12 flex flex-col justify-between space-y-6 relative z-10">
+                <div className="flex items-start gap-5">
+                  <div className="w-12 h-12 rounded-xl bg-[#0e1422] border border-white/10 flex items-center justify-center shrink-0 text-white mt-1 shadow-md">
+                    <Timer className="w-6 h-6" weight="duotone" />
+                  </div>
+                  <div className="space-y-2">
+                    <div className="font-heading text-xs font-semibold uppercase tracking-widest text-neutral-400">
+                      Unprecedented World Record
+                    </div>
+                    <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                      Historic Speed Record
+                    </h3>
+                    <p className="font-body text-xs sm:text-sm text-neutral-300 leading-relaxed max-w-lg">
+                      In 2019, Purja completed all 14 peaks above 8,000 meters in 6 months and 6 days, annihilating Jerzy Kukuczka&apos;s previous mark of 7 years, 11 months by over 93%.
+                    </p>
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <h3 className="font-display text-xl sm:text-2xl font-bold text-white tracking-tight">
-                    Historic Speed Record
-                  </h3>
-                  <p className="font-body text-xs sm:text-sm text-neutral-400 leading-relaxed max-w-md">
-                    In 2019, Purja climbed all 14 peaks above 8,000 meters in 6 months and 6 days, beating the prior 7-year record.
-                  </p>
+
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-6 border-t border-white/[0.08]">
+                  <div>
+                    <div className="font-display text-2xl sm:text-3xl font-extrabold text-white">189 Days</div>
+                    <div className="font-body text-xs text-neutral-400 mt-0.5">Total Duration</div>
+                  </div>
+                  <div>
+                    <div className="font-display text-2xl sm:text-3xl font-extrabold text-white">14 / 14</div>
+                    <div className="font-body text-xs text-neutral-400 mt-0.5">8,000m Summits</div>
+                  </div>
+                  <div>
+                    <div className="font-display text-2xl sm:text-3xl font-extrabold text-white">0</div>
+                    <div className="font-body text-xs text-neutral-400 mt-0.5">Casualties</div>
+                  </div>
                 </div>
               </div>
 
-              {/* Right Metric + Mountain Ridge Silhouette Half */}
-              <div className="md:col-span-6 relative p-7 sm:p-9 lg:p-10 md:border-l border-t md:border-t-0 border-white/[0.08] flex items-center overflow-hidden min-h-[160px] z-10">
-                {/* Dark mountain ridge backdrop */}
+              {/* Right Column: Hero Mountain Silhouette & Large Typography Accent */}
+              <div className="md:col-span-5 relative p-8 sm:p-10 lg:p-12 md:border-l border-t md:border-t-0 border-white/[0.08] flex items-center justify-center overflow-hidden min-h-[200px] z-10 bg-[#060910]">
                 <img
                   src="/images/nimsdai.webp"
-                  alt=""
-                  aria-hidden="true"
-                  className="absolute right-0 bottom-0 w-3/4 h-full object-cover object-[18%_38%] grayscale contrast-[1.35] brightness-[0.42] opacity-75 pointer-events-none select-none"
+                  alt="Himalayan mountain ridge silhouette"
+                  className="absolute right-0 bottom-0 w-full h-full object-cover object-[20%_35%] grayscale contrast-[1.3] brightness-[0.38] opacity-80 pointer-events-none select-none"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#090c12] via-[#090c12]/80 to-transparent pointer-events-none" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#090c12] via-transparent to-[#090c12]/60 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#060910] via-[#060910]/70 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#060910] via-transparent to-transparent pointer-events-none" />
 
-                <div className="relative z-10">
-                  <div className="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-[1.08] flex flex-col">
-                    <span><NumberFlow value={6} className="text-white" /> Months</span>
-                    <span><NumberFlow value={6} className="text-white" /> Days</span>
+                <div className="relative z-10 text-center md:text-left space-y-1">
+                  <div className="font-display text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-none">
+                    <span>6 Months</span>
                   </div>
-                  <div className="font-body text-xs text-neutral-400 mt-2 font-medium">
+                  <div className="font-display text-4xl sm:text-5xl lg:text-6xl font-black text-neutral-400 tracking-tight leading-none">
+                    <span>6 Days</span>
+                  </div>
+                  <div className="font-mono text-xs uppercase tracking-widest text-neutral-400 pt-2 font-semibold">
                     14 Peaks &mdash; 8,000m
                   </div>
                 </div>
               </div>
             </div>
+
           </div>
 
           {/* Section 2: 14 Peaks Project Possible (#peaks) */}
