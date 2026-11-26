@@ -226,7 +226,5 @@ export function HorizontalScrollExpeditions() {
     </section>
   );
 }
-  );
-}
 
 export default HorizontalScrollExpeditions;
