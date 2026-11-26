@@ -282,118 +282,178 @@ export function ParallaxComponent({
       <section className="parallax__content w-full bg-[#05070c] text-white">
         <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 space-y-32 sm:space-y-44 lg:space-y-52">
 
-          {/* Section 1: Our Story (#story) — Editorial Biography & Heritage */}
-          <div id="story" className="scroll-mt-28 space-y-12 sm:space-y-16 relative">
+          {/* Section 1: Our Story (#story) — Bold Magazine Editorial & Timeline Layout */}
+          <div id="story" className="scroll-mt-28 space-y-16 sm:space-y-24 relative">
             
-            {/* Top Atmospheric Hero Card: Full-Bleed Alpine Backdrop & Editorial Typography */}
-            <div data-reveal className="relative rounded-3xl bg-[#070b13] border border-white/[0.08] overflow-hidden p-8 sm:p-12 lg:p-16 min-h-[500px] flex flex-col justify-between shadow-[0_24px_64px_rgba(0,0,0,0.7)] group">
-              {/* Full-Bleed Atmospheric Background Portrait */}
-              <div className="absolute right-0 top-0 w-full md:w-3/5 h-full overflow-hidden pointer-events-none select-none z-0">
+            {/* Editorial Magazine Hero: Open Canvas, Massive Kinetic Typography & Integrated Alpine Portrait */}
+            <div data-reveal className="relative border-b border-white/[0.1] pb-14 sm:pb-20">
+              {/* Atmospheric Background Portrait integrated into the black canvas without enclosing boxes */}
+              <div className="hidden md:block absolute -top-8 right-0 w-[58%] lg:w-[52%] h-[560px] pointer-events-none select-none overflow-hidden z-0">
                 <img
                   src="/images/nimsdai-pose.webp"
-                  alt="Nimsdai in high-altitude alpine terrain"
-                  className="w-full h-full object-cover object-[55%_18%] grayscale contrast-[1.25] brightness-[0.75] transition-transform duration-1000 group-hover:scale-103"
+                  alt="Nimsdai Purja"
+                  className="w-full h-full object-cover object-[52%_15%] grayscale contrast-[1.28] brightness-[0.72] opacity-85"
                 />
-                {/* Seamless Multi-Directional Gradient Fades */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#070b13] via-[#070b13]/85 to-transparent" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#070b13] via-transparent to-[#070b13]/60" />
+                {/* Seamless Obsidian Vignette Masking */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#05070c] via-[#05070c]/60 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#05070c] via-transparent to-[#05070c]/90" />
+                <div className="absolute inset-0 bg-gradient-to-l from-[#05070c]/70 via-transparent to-transparent" />
               </div>
 
-              {/* Top Meta Indicator */}
-              <div className="relative z-10 flex items-center gap-2.5 font-heading text-xs font-semibold uppercase tracking-[0.2em] text-neutral-400">
-                <span className="w-6 h-px bg-white/40" />
-                <span>01 &mdash; Biography &amp; Heritage</span>
+              {/* Mobile Portrait */}
+              <div className="md:hidden relative w-full h-72 mb-8 rounded-2xl overflow-hidden border border-white/[0.08]">
+                <img
+                  src="/images/nimsdai-pose.webp"
+                  alt="Nimsdai Purja"
+                  className="w-full h-full object-cover object-[50%_15%] grayscale contrast-[1.2] brightness-[0.8]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#05070c] via-transparent to-transparent" />
               </div>
 
-              {/* Main Headline & Narrative */}
-              <div className="relative z-10 max-w-xl space-y-5 my-auto py-8">
-                <h2 className="font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-[-0.035em] text-white leading-[1.02]">
+              {/* Main Magazine Lead */}
+              <div className="relative z-10 max-w-2xl space-y-6">
+                <div className="flex items-center gap-3 font-heading text-xs font-semibold uppercase tracking-[0.22em] text-neutral-400">
+                  <span className="w-8 h-px bg-white/40" />
+                  <span>01 &mdash; Biography &amp; Military Heritage</span>
+                </div>
+
+                <h2 className="font-display text-6xl sm:text-7xl lg:text-8xl font-black tracking-[-0.04em] text-white leading-[0.98]">
                   Soldier to<br />
-                  Pioneer
+                  <span className="text-neutral-400">Pioneer</span>
                 </h2>
-                <p className="font-body text-sm sm:text-base text-neutral-300 leading-relaxed max-w-lg">
-                  Born in Dana, Myagdi District, Nepal. Nirmal &quot;Nims&quot; Purja MBE served 6 years with the prestigious Gurkhas and 10 years in the UK Special Boat Service (SBS) before setting out to redefine human capability across the world&apos;s 14 highest summits.
+
+                <p className="font-body text-base sm:text-lg text-neutral-300 leading-relaxed max-w-xl font-normal pt-2">
+                  Born in Dana, Myagdi District, Nepal. Nirmal &quot;Nims&quot; Purja MBE served 6 years with the Gurkhas and 10 years in the UK Special Boat Service (SBS) before mounting Project Possible &mdash; redefining what is humanly achievable across the world&apos;s 14 death-zone peaks.
                 </p>
-                <div className="flex items-center gap-4 pt-2">
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white font-mono text-xs">
-                    <span>16 Years Elite Military Service</span>
-                  </div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white font-mono text-xs">
-                    <span>MBE Honoree</span>
-                  </div>
-                </div>
-              </div>
 
-              {/* Bottom Quote Strip */}
-              <div className="relative z-10 pt-6 border-t border-white/[0.08] flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs text-neutral-400 gap-2">
-                <span className="font-mono tracking-wider">&ldquo;GIVE EVERYTHING OR DO NOT START.&rdquo;</span>
-                <span className="text-white/60 font-heading">Dana, Myagdi &rarr; Special Boat Service &rarr; 8,000m Peaks</span>
-              </div>
-            </div>
-
-            {/* 3 Interactive Cards with Micro-Interactions & Hover Polish */}
-            <div data-reveal className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
-              {/* Card 1: Gurkhas & UK SBS */}
-              <div className="p-7 sm:p-8 rounded-2xl bg-[#090d16] border border-white/[0.08] flex flex-col justify-between space-y-6 hover:border-white/25 hover:bg-[#0c121e] transition-all duration-300 group shadow-lg">
-                <div className="space-y-4">
-                  <div className="w-12 h-12 rounded-xl bg-[#0f1523] border border-white/10 flex items-center justify-center text-white group-hover:scale-105 transition-transform">
-                    <ShieldCheck className="w-5 h-5 text-white" weight="duotone" />
-                  </div>
-                  <h3 className="font-display text-xl sm:text-2xl font-bold text-white tracking-tight">
-                    Gurkhas &amp; UK SBS
-                  </h3>
-                  <p className="font-body text-xs sm:text-sm text-neutral-400 leading-relaxed">
-                    First Gurkha in British military history to pass selection for the elite Special Boat Service (SBS), mastering Arctic warfare and extreme tactical operations.
-                  </p>
-                </div>
-                <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono text-neutral-400">
-                  <span>Special Forces</span>
-                  <span className="text-white/80">2003 &ndash; 2019</span>
-                </div>
-              </div>
-
-              {/* Card 2: 14 Peaks Documentary */}
-              <div className="p-7 sm:p-8 rounded-2xl bg-[#090d16] border border-white/[0.08] flex flex-col justify-between space-y-6 hover:border-white/25 hover:bg-[#0c121e] transition-all duration-300 group shadow-lg">
-                <div className="space-y-4">
-                  <div className="w-12 h-12 rounded-xl bg-[#0f1523] border border-white/10 flex items-center justify-center text-white group-hover:scale-105 transition-transform">
-                    <Play className="w-5 h-5 text-white" weight="duotone" />
-                  </div>
-                  <h3 className="font-display text-xl sm:text-2xl font-bold text-white tracking-tight">
-                    14 Peaks: Netflix
-                  </h3>
-                  <p className="font-body text-xs sm:text-sm text-neutral-400 leading-relaxed">
-                    The acclaimed global documentary brought the extraordinary spirit and skill of Nepali Sherpa climbers to millions, earning critical worldwide acclaim.
-                  </p>
-                </div>
-                <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono text-neutral-400">
-                  <span>Global Release</span>
-                  <span className="text-white/80">Netflix 2021</span>
-                </div>
-              </div>
-
-              {/* Card 3: Beyond Possible */}
-              <div className="p-7 sm:p-8 rounded-2xl bg-[#090d16] border border-white/[0.08] flex flex-col justify-between space-y-6 hover:border-white/25 hover:bg-[#0c121e] transition-all duration-300 group shadow-lg">
-                <div className="space-y-4">
-                  <div className="w-12 h-12 rounded-xl bg-[#0f1523] border border-white/10 flex items-center justify-center text-white group-hover:scale-105 transition-transform">
-                    <BookOpen className="w-5 h-5 text-white" weight="duotone" />
-                  </div>
-                  <h3 className="font-display text-xl sm:text-2xl font-bold text-white tracking-tight">
-                    Beyond Possible
-                  </h3>
-                  <p className="font-body text-xs sm:text-sm text-neutral-400 leading-relaxed">
-                    Sunday Times bestselling memoir detailing the physical toll of the Death Zone, psychological endurance, and the philosophy of human limitlessness.
-                  </p>
-                </div>
-                <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono text-neutral-400">
-                  <span>Bestseller</span>
-                  <span className="text-white/80">Hodder &amp; Stoughton</span>
+                {/* Editorial Meta Tags */}
+                <div className="flex flex-wrap items-center gap-3 pt-3">
+                  <span className="px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-white font-mono text-xs font-medium">
+                    16 Years Special Forces
+                  </span>
+                  <span className="px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-white font-mono text-xs font-medium">
+                    MBE Honoree
+                  </span>
+                  <span className="px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-white font-mono text-xs font-medium">
+                    SBS Mountain Leader
+                  </span>
                 </div>
               </div>
             </div>
 
-            {/* Bottom Telemetry Split Banner: Historic Speed Record */}
+            {/* Bold Large-Format Pull Quote with Editorial Signature */}
+            <div data-reveal className="relative py-8 sm:py-12 border-b border-white/[0.08]">
+              <div className="max-w-4xl mx-auto text-center space-y-6">
+                <span className="font-mono text-xs uppercase tracking-[0.25em] text-neutral-400 block">
+                  The Core Philosophy
+                </span>
+                <blockquote className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-[-0.03em] text-white leading-[1.12]">
+                  &ldquo;Giving up is not in the blood, sir. It&apos;s not in the blood.&rdquo;
+                </blockquote>
+                <div className="flex items-center justify-center gap-3 pt-2 text-neutral-400 text-xs sm:text-sm font-heading">
+                  <span className="text-white font-semibold">Nirmal &quot;Nimsdai&quot; Purja MBE</span>
+                  <span className="w-1 h-1 rounded-full bg-neutral-600" />
+                  <span>SBS Selection &middot; Project Possible Leader</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Chronological Heritage Timeline (The Journey) */}
+            <div data-reveal className="space-y-8">
+              <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-white/[0.08] pb-4 gap-2">
+                <div>
+                  <span className="font-heading text-xs font-semibold uppercase tracking-widest text-neutral-400">
+                    The Chronicle
+                  </span>
+                  <h3 className="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight mt-1">
+                    Timeline of Endurance
+                  </h3>
+                </div>
+                <span className="font-mono text-xs text-neutral-400">2003 &mdash; 2021 &middot; 4 Pivotal Chapters</span>
+              </div>
+
+              {/* 4-Step Interactive Horizontal / Stacked Timeline */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {/* Step 1: Gurkha Selection */}
+                <div className="p-6 rounded-2xl bg-[#080c14] border border-white/[0.08] hover:border-white/25 transition-all duration-300 flex flex-col justify-between space-y-6 group">
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-xs text-neutral-400 font-bold">01</span>
+                      <span className="px-2.5 py-0.5 rounded-full bg-white/10 text-white font-mono text-[11px]">2003</span>
+                    </div>
+                    <h4 className="font-display text-xl font-bold text-white group-hover:text-white transition-colors">
+                      The Gurkhas
+                    </h4>
+                    <p className="font-body text-xs text-neutral-400 leading-relaxed">
+                      Enlisted in the British Army Brigade of Gurkhas, following family tradition into one of the most feared infantry units in military history.
+                    </p>
+                  </div>
+                  <div className="pt-4 border-t border-white/[0.06] text-[11px] font-mono text-neutral-400 uppercase tracking-wider">
+                    Infantry &middot; Nepal
+                  </div>
+                </div>
+
+                {/* Step 2: SBS Selection */}
+                <div className="p-6 rounded-2xl bg-[#080c14] border border-white/[0.08] hover:border-white/25 transition-all duration-300 flex flex-col justify-between space-y-6 group">
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-xs text-neutral-400 font-bold">02</span>
+                      <span className="px-2.5 py-0.5 rounded-full bg-white/10 text-white font-mono text-[11px]">2009</span>
+                    </div>
+                    <h4 className="font-display text-xl font-bold text-white group-hover:text-white transition-colors">
+                      UK Special Boat Service
+                    </h4>
+                    <p className="font-body text-xs text-neutral-400 leading-relaxed">
+                      Became the first Gurkha to pass UK SBS Selection. Specialised in cold-weather warfare and high-altitude covert mountain operations.
+                    </p>
+                  </div>
+                  <div className="pt-4 border-t border-white/[0.06] text-[11px] font-mono text-neutral-400 uppercase tracking-wider">
+                    Special Forces &middot; UK
+                  </div>
+                </div>
+
+                {/* Step 3: Project Possible */}
+                <div className="p-6 rounded-2xl bg-[#080c14] border border-white/[0.08] hover:border-white/25 transition-all duration-300 flex flex-col justify-between space-y-6 group">
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-xs text-neutral-400 font-bold">03</span>
+                      <span className="px-2.5 py-0.5 rounded-full bg-white/10 text-white font-mono text-[11px]">2019</span>
+                    </div>
+                    <h4 className="font-display text-xl font-bold text-white group-hover:text-white transition-colors">
+                      Project Possible
+                    </h4>
+                    <p className="font-body text-xs text-neutral-400 leading-relaxed">
+                      Resigned pension from SBS to climb all 14 8,000m summits. Shattered the world record in 6 months and 6 days with 0 casualties.
+                    </p>
+                  </div>
+                  <div className="pt-4 border-t border-white/[0.06] text-[11px] font-mono text-neutral-400 uppercase tracking-wider">
+                    189 Days &middot; World Record
+                  </div>
+                </div>
+
+                {/* Step 4: K2 Winter */}
+                <div className="p-6 rounded-2xl bg-[#080c14] border border-white/[0.08] hover:border-white/25 transition-all duration-300 flex flex-col justify-between space-y-6 group">
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-xs text-neutral-400 font-bold">04</span>
+                      <span className="px-2.5 py-0.5 rounded-full bg-white/10 text-white font-mono text-[11px]">2021</span>
+                    </div>
+                    <h4 className="font-display text-xl font-bold text-white group-hover:text-white transition-colors">
+                      K2 First Winter Ascent
+                    </h4>
+                    <p className="font-body text-xs text-neutral-400 leading-relaxed">
+                      Conquered the &apos;Savage Mountain&apos; in harsh sub-zero winter conditions, stepping onto the summit together as an all-Nepali team.
+                    </p>
+                  </div>
+                  <div className="pt-4 border-t border-white/[0.06] text-[11px] font-mono text-neutral-400 uppercase tracking-wider">
+                    8,611m &middot; Historic First
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Speed Record Telemetry Banner */}
             <div data-reveal className="relative rounded-3xl bg-[#080c14] border border-white/[0.09] overflow-hidden grid grid-cols-1 md:grid-cols-12 items-stretch shadow-[0_20px_50px_rgba(0,0,0,0.65)]">
-              {/* Left Column: Context & Narrative */}
               <div className="md:col-span-7 p-8 sm:p-10 lg:p-12 flex flex-col justify-between space-y-6 relative z-10">
                 <div className="flex items-start gap-5">
                   <div className="w-12 h-12 rounded-xl bg-[#0e1422] border border-white/10 flex items-center justify-center shrink-0 text-white mt-1 shadow-md">
@@ -428,7 +488,6 @@ export function ParallaxComponent({
                 </div>
               </div>
 
-              {/* Right Column: Hero Mountain Silhouette & Large Typography Accent */}
               <div className="md:col-span-5 relative p-8 sm:p-10 lg:p-12 md:border-l border-t md:border-t-0 border-white/[0.08] flex items-center justify-center overflow-hidden min-h-[200px] z-10 bg-[#060910]">
                 <img
                   src="/images/nimsdai.webp"
@@ -451,6 +510,8 @@ export function ParallaxComponent({
                 </div>
               </div>
             </div>
+
+          </div>
 
           </div>
 
