@@ -3,59 +3,276 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Lenis from '@studio-freight/lenis';
 
-export const peaksData = [
-  { name: 'Annapurna', height: 8091, date: '23 Apr' },
-  { name: 'Dhaulagiri', height: 8167, date: '12 May' },
-  { name: 'Kangchenjunga', height: 8586, date: '15 May' },
-  { name: 'Everest', height: 8849, date: '22 May' },
-  { name: 'Lhotse', height: 8516, date: '22 May' },
-  { name: 'Makalu', height: 8485, date: '24 May' },
-  { name: 'Nanga Parbat', height: 8126, date: '3 Jul' },
-  { name: 'Gasherbrum I', height: 8080, date: '15 Jul' },
-  { name: 'Gasherbrum II', height: 8035, date: '18 Jul' },
-  { name: 'K2', height: 8611, date: '24 Jul' },
-  { name: 'Broad Peak', height: 8051, date: '26 Jul' },
-  { name: 'Cho Oyu', height: 8188, date: '23 Sep' },
-  { name: 'Manaslu', height: 8163, date: '27 Sep' },
-  { name: 'Shishapangma', height: 8027, date: '29 Oct' },
+export interface PeakDetail {
+  id: string;
+  name: string;
+  height: number;
+  date: string;
+  country: string;
+  range: string;
+  notes: string;
+  phase: string;
+  oxygen: string;
+}
+
+export const peaksData: PeakDetail[] = [
+  {
+    id: '01',
+    name: 'Annapurna I',
+    height: 8091,
+    date: '23 Apr 2019',
+    country: 'Nepal',
+    range: 'Annapurna Himalaya',
+    phase: 'Phase 1 · Nepal',
+    notes: 'Opening peak of Project Possible. Notorious avalanche risk, completed in brutal spring conditions.',
+    oxygen: 'Supplemental O2'
+  },
+  {
+    id: '02',
+    name: 'Dhaulagiri',
+    height: 8167,
+    date: '12 May 2019',
+    country: 'Nepal',
+    range: 'Dhaulagiri Himalaya',
+    phase: 'Phase 1 · Nepal',
+    notes: 'The White Mountain. Pushed through 70mph jetstream winds after summit delay.',
+    oxygen: 'Supplemental O2'
+  },
+  {
+    id: '03',
+    name: 'Kangchenjunga',
+    height: 8586,
+    date: '15 May 2019',
+    country: 'Nepal / India',
+    range: 'Kangchenjunga Himalaya',
+    phase: 'Phase 1 · Nepal',
+    notes: 'Third highest peak in the world. Led a daring rescue of stranded climbers during descent.',
+    oxygen: 'Supplemental O2'
+  },
+  {
+    id: '04',
+    name: 'Mount Everest',
+    height: 8849,
+    date: '22 May 2019',
+    country: 'Nepal / Tibet',
+    range: 'Mahalangur Himalaya',
+    phase: 'Phase 1 · Nepal',
+    notes: 'Took the iconic viral photo of the Hillary Step summit traffic jam at 05:30 AM.',
+    oxygen: 'Supplemental O2'
+  },
+  {
+    id: '05',
+    name: 'Lhotse',
+    height: 8516,
+    date: '22 May 2019',
+    country: 'Nepal / Tibet',
+    range: 'Mahalangur Himalaya',
+    phase: 'Phase 1 · Nepal',
+    notes: 'Summited just 10 hours and 15 minutes after standing on top of Everest. Record speed double-header.',
+    oxygen: 'Supplemental O2'
+  },
+  {
+    id: '06',
+    name: 'Makalu',
+    height: 8485,
+    date: '24 May 2019',
+    country: 'Nepal / Tibet',
+    range: 'Makalu Himalaya',
+    phase: 'Phase 1 · Nepal',
+    notes: 'Closed Phase 1: 6 summits in just 31 days. Unprecedented endurance milestone in climbing history.',
+    oxygen: 'Supplemental O2'
+  },
+  {
+    id: '07',
+    name: 'Nanga Parbat',
+    height: 8126,
+    date: '03 Jul 2019',
+    country: 'Pakistan',
+    range: 'Western Himalaya',
+    phase: 'Phase 2 · Pakistan',
+    notes: 'The "Killer Mountain". Ruthless Kinshofer Route scaled in pure tactical alpine push.',
+    oxygen: 'Supplemental O2'
+  },
+  {
+    id: '08',
+    name: 'Gasherbrum I',
+    height: 8080,
+    date: '15 Jul 2019',
+    country: 'Pakistan / China',
+    range: 'Baltoro Karakoram',
+    phase: 'Phase 2 · Pakistan',
+    notes: 'Hidden Peak. Extreme crevasse labyrinths and intense thermal radiation on the upper glacier.',
+    oxygen: 'Supplemental O2'
+  },
+  {
+    id: '09',
+    name: 'Gasherbrum II',
+    height: 8035,
+    date: '18 Jul 2019',
+    country: 'Pakistan / China',
+    range: 'Baltoro Karakoram',
+    phase: 'Phase 2 · Pakistan',
+    notes: 'Summited just 3 days after G1. Relentless momentum across the Karakoram giants.',
+    oxygen: 'Supplemental O2'
+  },
+  {
+    id: '10',
+    name: 'K2',
+    height: 8611,
+    date: '24 Jul 2019',
+    country: 'Pakistan / China',
+    range: 'Baltoro Karakoram',
+    phase: 'Phase 2 · Pakistan',
+    notes: 'Savage Mountain. Fixed ropes through the infamous Bottleneck when all other teams had given up.',
+    oxygen: 'Supplemental O2'
+  },
+  {
+    id: '11',
+    name: 'Broad Peak',
+    height: 8051,
+    date: '26 Jul 2019',
+    country: 'Pakistan / China',
+    range: 'Baltoro Karakoram',
+    phase: 'Phase 2 · Pakistan',
+    notes: 'Completed K2 and Broad Peak in only 48 hours, wrapping Phase 2 with zero casualties.',
+    oxygen: 'Supplemental O2'
+  },
+  {
+    id: '12',
+    name: 'Cho Oyu',
+    height: 8188,
+    date: '23 Sep 2019',
+    country: 'Nepal / Tibet',
+    range: 'Mahalangur Himalaya',
+    phase: 'Phase 3 · Tibet',
+    notes: 'The Turquoise Goddess. Swift, cold ascent opened the final leg of the mission.',
+    oxygen: 'Supplemental O2'
+  },
+  {
+    id: '13',
+    name: 'Manaslu',
+    height: 8163,
+    date: '27 Sep 2019',
+    country: 'Nepal',
+    range: 'Mansiri Himalaya',
+    phase: 'Phase 3 · Tibet',
+    notes: 'Mountain of the Spirit. Battled deep snow on the knife-edge ridge to reach the summit plateau.',
+    oxygen: 'Supplemental O2'
+  },
+  {
+    id: '14',
+    name: 'Shishapangma',
+    height: 8027,
+    date: '29 Oct 2019',
+    country: 'Tibet (China)',
+    range: 'Jugal Himalaya',
+    phase: 'Phase 3 · Tibet',
+    notes: 'Special diplomatic permit granted by China. 14th summit sealed the world record: 189 days total.',
+    oxygen: 'Supplemental O2'
+  },
 ];
 
-export const storySteps = [
+export interface StoryMilestone {
+  year: string;
+  tag: string;
+  title: string;
+  location: string;
+  elevationOrRole: string;
+  desc: string;
+  keyPoints: string[];
+  quote?: string;
+  bgImage: string;
+}
+
+export const storyMilestones: StoryMilestone[] = [
   {
     year: '1983',
-    tag: 'Beginnings',
-    title: 'Born beneath the Himalaya',
-    desc: 'Born on 25 July 1983 in Dana, Myagdi district, and raised largely in Chitwan.',
+    tag: 'Chapter 01 · Heritage & Roots',
+    title: 'Born Beneath the Himalaya',
+    location: 'Dana, Myagdi District, Nepal',
+    elevationOrRole: 'Elevation 1,400m',
+    desc: 'Born on 25 July 1983 into a humble Gurkha family in Dana, Myagdi district, and raised in the subtropical plains of Chitwan. Growing up without luxury, resilience was forged early through disciplined routines, distance running, and the indomitable Nepali spirit.',
+    keyPoints: [
+      'Father served in the 2nd King Edward VII\'s Own Gurkha Rifles',
+      'Three elder brothers all enlisted as proud British Gurkhas',
+      'Childhood ambition focused entirely on military excellence'
+    ],
+    quote: '"My background made me hungry. When you start with nothing, you have nothing to lose and everything to prove."',
+    bgImage: '/images/nimsdai-pose.webp'
   },
   {
     year: '2003',
-    tag: 'Service',
-    title: 'Joining the Gurkhas',
-    desc: "Following his father and brothers, he joined the British Army's Gurkhas at 18.",
+    tag: 'Chapter 02 · Military Enlistment',
+    title: 'The Gurkha Brotherhood',
+    location: 'Catterick & Worldwide Deployments',
+    elevationOrRole: 'British Army Brigade of Gurkhas',
+    desc: 'At 18, after surviving brutal physical trials among tens of thousands of Nepali candidates, Purja was accepted into the elite Brigade of Gurkhas. He carried the traditional Kukri blade with distinction, learning extreme survival, psychological endurance, and brotherhood.',
+    keyPoints: [
+      'Top tier recruit in endurance tests and tactical navigation',
+      'Served 6 years as an infantry soldier and combat leader',
+      'Cultivated the Gurkha creed: "Better to die than live a coward"'
+    ],
+    bgImage: '/images/nimsdai-pose.webp'
   },
   {
     year: '2009',
-    tag: 'Special Forces',
-    title: 'First Gurkha in the SBS',
-    desc: 'He passed selection for the Special Boat Service and became a cold-weather warfare specialist.',
+    tag: 'Chapter 03 · Tier-1 Special Forces',
+    title: 'First Gurkha in the UK SBS',
+    location: 'Poole, UK & Classified Mountain Theatres',
+    elevationOrRole: 'Special Boat Service (SBS)',
+    desc: 'Made British military history by becoming the first Gurkha soldier ever to pass selection for the Special Boat Service (SBS)—the UK\'s most secretive maritime and mountain counter-terrorism unit. He served 10 years, qualifying as a cold-weather combat diving and arctic mountain warfare specialist.',
+    keyPoints: [
+      'Selected for classified high-altitude tactical mountain operations',
+      'Awarded MBE (Member of the Order of the British Empire) by Queen Elizabeth II in 2018',
+      'Resigned pension and military career to attempt the unthinkable'
+    ],
+    quote: '"Giving up is not in the blood, sir. It is not in the blood."',
+    bgImage: '/images/nims-top-world.webp'
   },
   {
     year: '2019',
-    tag: 'Project Possible',
-    title: '14 peaks in 6 months, 6 days',
-    desc: 'A record that redrew the limits of high-altitude climbing and put Nepali climbers in the spotlight.',
+    tag: 'Chapter 04 · World Record',
+    title: 'Project Possible: 14 Peaks, 189 Days',
+    location: 'Nepal, Pakistan, Tibet',
+    elevationOrRole: '14 × 8,000m Death Zone Summits',
+    desc: 'Shattered the previous world record of 7 years and 11 months by summiting all fourteen 8,000-meter peaks on Earth in just 6 months and 6 days. Leading a courageous all-Nepali Sherpa team, he completed the feat with zero team casualties, bringing global acclaim to Nepali mountaineers.',
+    keyPoints: [
+      'Documented in the global hit Netflix film "14 Peaks: Nothing Is Impossible"',
+      'Summited Everest, Lhotse, and Makalu within 48 hours',
+      'Rescued multiple abandoned climbers from other commercial expeditions'
+    ],
+    quote: '"I wanted to show the world that Nepali climbers are not just supporting staff. We are the pioneers."',
+    bgImage: '/images/annapurna-nimsdai.webp'
   },
   {
     year: '2021',
-    tag: 'K2 Winter',
-    title: 'A first for Nepal',
-    desc: 'On 16 January 2021 he stood on K2 with an all-Nepali team, the first to summit it in winter.',
+    tag: 'Chapter 05 · The Final Frontier',
+    title: 'K2 First Winter Ascent: A First for Nepal',
+    location: 'K2 (8,611m), Karakoram Range, Pakistan',
+    elevationOrRole: 'Savage Mountain Winter Summit',
+    desc: 'Conquered what high-altitude mountaineering considered the impossible final challenge: summiting K2 in the dead of winter at minus 60°C and hurricane winds. Purja summited without supplemental oxygen, alongside 9 fellow Nepali climbers who linked arms to step on the apex together singing the Nepal national anthem.',
+    keyPoints: [
+      'Sub-zero hurricane conditions with temperatures plummeting below -65°C',
+      'First human in history to summit K2 in winter without supplemental oxygen',
+      '10 Nepali mountaineers united as one team to claim the triumph for Nepal'
+    ],
+    quote: '"We didn\'t do it for individual fame. We stopped 10 meters before the summit, waited for all 10 brothers, and walked onto the top together."',
+    bgImage: '/images/nimsdai-hero.jpg'
   },
   {
     year: '2026',
-    tag: 'In memory',
-    title: 'Remembered in the mountains',
-    desc: 'Nimsdai died in an avalanche on Broad Peak, Pakistan, in July 2026.',
+    tag: 'Chapter 06 · Enduring Legacy',
+    title: 'Remembered in the Mountains',
+    location: 'The Great Himalaya & Karakoram',
+    elevationOrRole: 'The Spirit of Nothing Is Impossible',
+    desc: 'A titan whose courage permanently transformed high-altitude mountaineering and inspired millions across the globe. Through the Nimsdai Foundation and the Big Mountain Cleanup, his vision lives on: protecting the sacred peaks, empowering indigenous guides, and proving human spirit knows no limit.',
+    keyPoints: [
+      'Removed metric tons of abandoned commercial trash from the Death Zone',
+      'Raised millions for Sherpa widows and high-altitude mountain porter welfare',
+      'Eternal pioneer of the high Himalaya: "Nothing is impossible."'
+    ],
+    quote: '"When the mountain tells you to move, you move. When it tells you to stand, you stand. The mountain always decides."',
+    bgImage: '/images/himalaya-peak-bg.jpg'
   },
 ];
 
@@ -66,6 +283,7 @@ export interface ParallaxComponentProps {
 export function ParallaxComponent({ className = '' }: ParallaxComponentProps) {
   const [activeYear, setActiveYear] = useState('1983');
   const [activeStepIndex, setActiveStepIndex] = useState(0);
+  const [activePeak, setActivePeak] = useState<PeakDetail | null>(null);
 
   const heroRef = useRef<HTMLElement>(null);
   const valleyRef = useRef<HTMLDivElement>(null);
@@ -74,7 +292,7 @@ export function ParallaxComponent({ className = '' }: ParallaxComponentProps) {
   const titleRef = useRef<HTMLDivElement>(null);
   const h1Ref = useRef<HTMLHeadingElement>(null);
   const revealRef = useRef<HTMLDivElement>(null);
-  const altRef = useRef<HTMLSpanElement>(null);
+  const altRef = useRef<HTMLDivElement>(null);
 
   const peaksRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -120,7 +338,7 @@ export function ParallaxComponent({ className = '' }: ParallaxComponentProps) {
     const update = () => {
       peaksUpdate();
 
-      // Hero Scroll Animation Math
+      // Hero Scroll Animation Math (from Reference)
       if (heroRef.current) {
         const heroH = heroRef.current.offsetHeight;
         const p = clamp(window.scrollY / (heroH - window.innerHeight));
@@ -209,8 +427,11 @@ export function ParallaxComponent({ className = '' }: ParallaxComponentProps) {
     };
   }, []);
 
+  const currentMilestone = storyMilestones[activeStepIndex] || storyMilestones[0];
+
   return (
-    <div className="w-full bg-[#06080c] text-[#f2f5f8] font-body selection:bg-[#9cc9ee] selection:text-black">
+    <div className={`w-full bg-[#06080c] text-[#f2f5f8] font-body selection:bg-[#9cc9ee] selection:text-black ${className}`.trim()}>
+      
       {/* 1. HERO PINNED SCROLL STORY (320vh height with 100svh sticky viewport) */}
       <section id="hero" ref={heroRef} className="relative w-full h-[320vh]">
         <div className="sticky top-0 h-[100vh] h-[100svh] overflow-hidden">
@@ -241,12 +462,21 @@ export function ParallaxComponent({ className = '' }: ParallaxComponentProps) {
             ref={titleRef}
             className="absolute inset-0 flex flex-col items-center justify-center text-center select-none"
           >
-            <span className="absolute top-[14%] left-[8%] font-mono text-[11px] tracking-[0.14em] uppercase text-[#9aa6b4]">
-              14 Peaks &middot; 8,000m
-            </span>
-            <span className="absolute top-[14%] right-[8%] font-mono text-[11px] tracking-[0.14em] uppercase text-[#9aa6b4]">
-              Project Possible
-            </span>
+            <div className="absolute top-[14%] left-[6%] sm:left-[8%] flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#9cc9ee] animate-ping" />
+              <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-[#9aa6b4]">
+                14 Peaks &middot; 8,000m
+              </span>
+            </div>
+
+            <div className="absolute top-[14%] right-[6%] sm:right-[8%] flex items-center gap-2">
+              <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-[#9aa6b4]">
+                Project Possible
+              </span>
+              <span className="hidden sm:inline px-2 py-0.5 rounded bg-white/10 text-[9px] font-mono text-[#9cc9ee] border border-white/10">
+                OFFICIAL RECORD
+              </span>
+            </div>
 
             <h1
               ref={h1Ref}
@@ -255,9 +485,15 @@ export function ParallaxComponent({ className = '' }: ParallaxComponentProps) {
               NIMSDAI
             </h1>
 
-            <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-[#9aa6b4] mt-3">
-              1983 &ndash; 2026
-            </p>
+            <div className="flex items-center gap-3 mt-3">
+              <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-[#9aa6b4]">
+                1983 &ndash; 2026
+              </span>
+              <span className="w-1 h-1 rounded-full bg-[#9aa6b4]" />
+              <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-[#9cc9ee]">
+                Nepali Pioneer
+              </span>
+            </div>
 
             <div className="absolute bottom-[6%] w-full text-center">
               <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-[#9aa6b4]">
@@ -283,49 +519,87 @@ export function ParallaxComponent({ className = '' }: ParallaxComponentProps) {
             ref={revealRef}
             className="absolute left-[4%] right-[4%] bottom-[6%] flex justify-between items-end gap-6 flex-wrap opacity-0 pointer-events-none"
           >
-            <h2 className="font-serif font-medium text-[clamp(42px,6vw,92px)] leading-none text-[#f2f5f8]">
-              Nothing Is<br />
-              Impossible
-            </h2>
+            <div className="space-y-2">
+              <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-[#9cc9ee] block">
+                The Summit Statement
+              </span>
+              <h2 className="font-serif font-medium text-[clamp(42px,6vw,92px)] leading-none text-[#f2f5f8]">
+                Nothing Is<br />
+                Impossible
+              </h2>
+            </div>
 
-            <div className="max-w-[420px] space-y-4">
-              <p className="text-[14px] text-[#f2f5f8]/90 leading-relaxed font-body">
+            <div className="max-w-[460px] space-y-4">
+              <p className="text-[14px] sm:text-[15px] text-[#f2f5f8]/90 leading-relaxed font-body">
                 Nepal-born mountaineer, former Gurkha and UK Special Boat Service. He climbed all 14 of the world&apos;s 8,000m peaks in 6 months and 6 days, then joined the first winter ascent of K2.
               </p>
-              <a
-                href="#story"
-                className="inline-block text-[#f2f5f8] no-underline border border-white/20 bg-[#05070a]/80 px-[22px] py-[11px] rounded-full text-[13px] font-semibold hover:bg-[#f2f5f8] hover:text-[#06080c] transition-colors duration-300 shadow-xl"
-              >
-                Read his story &rarr;
-              </a>
+              
+              <div className="flex flex-wrap items-center gap-3 pt-1">
+                <a
+                  href="#story"
+                  className="inline-block text-[#f2f5f8] no-underline border border-white/20 bg-[#05070a]/80 px-[22px] py-[11px] rounded-full text-[13px] font-semibold hover:bg-[#f2f5f8] hover:text-[#06080c] transition-colors duration-300 shadow-xl"
+                >
+                  Read his story &rarr;
+                </a>
+                <a
+                  href="#peaks"
+                  className="inline-block text-[#9aa6b4] hover:text-white text-[13px] font-mono px-3 py-2 transition-colors"
+                >
+                  View 14 Summits &darr;
+                </a>
+              </div>
             </div>
           </div>
 
           {/* Live Altitude Readout */}
-          <span
+          <div
             id="alt"
             ref={altRef}
-            className="hidden sm:block absolute right-6 top-1/2 -translate-y-1/2 font-mono text-[11px] tracking-[0.14em] uppercase text-[#9aa6b4]"
+            className="hidden sm:flex flex-col items-end gap-1 absolute right-6 top-1/2 -translate-y-1/2 font-mono text-[11px] tracking-[0.14em] uppercase text-[#9aa6b4]"
           >
-            1,400 m
-          </span>
+            <span className="text-[9px] text-[#9cc9ee]">ALTITUDE</span>
+            <span className="text-[#f2f5f8] font-bold text-sm tracking-widest">1,400 m</span>
+          </div>
         </div>
       </section>
 
       {/* 2. OUR STORY SECTION (Sticky Portrait with Dynamic Changing Year & Stepped Timeline) */}
       <section
         id="story"
-        className="px-[6%] pt-[140px] pb-[100px] grid grid-cols-1 md:grid-cols-2 gap-[7%]"
+        className="px-[6%] pt-[140px] pb-[100px] grid grid-cols-1 md:grid-cols-2 gap-[7%] relative"
       >
-        {/* Left Sticky Portrait with Dynamic Year */}
+        {/* Left Sticky Portrait with Dynamic Year & Context Telemetry */}
         <div className="relative">
           <div
-            className="sticky top-[90px] h-[36svh] md:h-[calc(100vh-130px)] md:h-[calc(100svh-130px)] rounded-[20px] overflow-hidden bg-cover bg-center shadow-2xl"
+            className="sticky top-[90px] h-[40svh] md:h-[calc(100vh-130px)] md:h-[calc(100svh-130px)] rounded-[20px] overflow-hidden bg-cover bg-center shadow-2xl transition-all duration-700 border border-white/10 group"
             style={{
-              backgroundImage: `url('/images/nimsdai-pose.webp'), linear-gradient(170deg, #1d3a58, #0a0e14)`,
+              backgroundImage: `url('${currentMilestone.bgImage}'), linear-gradient(170deg, #1d3a58, #0a0e14)`,
             }}
           >
-            <div className="absolute inset-0 bg-gradient-to-t from-[#06080c] via-transparent to-transparent pointer-events-none" />
+            {/* Atmospheric gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#06080c] via-black/20 to-black/40 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#06080c]/60 via-transparent to-transparent pointer-events-none" />
+
+            {/* Top metadata inside sticky card */}
+            <div className="absolute top-6 left-6 right-6 flex items-center justify-between text-[11px] font-mono tracking-wider text-[#9aa6b4] z-10">
+              <span className="px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-[#9cc9ee]">
+                {currentMilestone.location}
+              </span>
+              <span className="hidden sm:inline px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-white/80">
+                {currentMilestone.elevationOrRole}
+              </span>
+            </div>
+
+            {/* Quote badge if present */}
+            {currentMilestone.quote && (
+              <div className="absolute bottom-28 left-6 right-6 hidden sm:block z-10">
+                <blockquote className="font-serif italic text-white/90 text-sm md:text-base leading-snug p-4 rounded-xl bg-black/60 backdrop-blur-md border border-white/10 max-w-sm">
+                  {currentMilestone.quote}
+                </blockquote>
+              </div>
+            )}
+
+            {/* Bottom Giant Changing Year Watermark */}
             <div className="absolute left-6 bottom-2.5 font-serif font-normal text-[clamp(60px,9vw,140px)] leading-none text-[#f2f5f8] drop-shadow-[0_4px_30px_#000] select-none transition-all duration-300">
               {activeYear}
             </div>
@@ -336,38 +610,56 @@ export function ParallaxComponent({ className = '' }: ParallaxComponentProps) {
         <div>
           <div className="mb-[60px]">
             <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-[#9aa6b4]">
-              Our story
+              Our story &middot; 1983 &ndash; 2026
             </span>
             <h2 className="font-serif font-medium text-[clamp(36px,5vw,72px)] leading-[1.08] text-[#f2f5f8] mt-3 mb-4">
               From Myagdi to the top of the world
             </h2>
             <p className="text-[#9aa6b4] max-w-[480px] text-sm sm:text-base leading-relaxed">
-              A soldier who came to the mountains late, and changed what people believed was possible on them.
+              A soldier who came to the mountains late, and permanently redrew the boundaries of human stamina, high-altitude tactical leadership, and modern mountaineering.
             </p>
           </div>
 
-          <div className="space-y-4">
-            {storySteps.map((step, idx) => {
+          <div className="space-y-6">
+            {storyMilestones.map((step, idx) => {
               const isOn = activeStepIndex === idx;
               return (
                 <article
                   key={step.year}
                   data-y={step.year}
-                  className={`story-step-item min-h-[55vh] pl-7 border-l transition-all duration-500 flex flex-col justify-center ${
+                  className={`story-step-item min-h-[58vh] pl-7 sm:pl-9 border-l transition-all duration-500 flex flex-col justify-center ${
                     isOn
                       ? 'opacity-100 border-[#9cc9ee]'
                       : 'opacity-25 border-white/10'
                   }`}
                 >
-                  <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-[#9aa6b4]">
-                    {step.tag}
-                  </span>
-                  <h3 className="font-serif font-medium text-[36px] leading-[1.15] text-[#f2f5f8] my-2">
+                  {/* Step Header */}
+                  <div className="flex items-center gap-3">
+                    <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-[#9cc9ee] font-medium">
+                      {step.tag}
+                    </span>
+                    <span className="text-[10px] font-mono text-neutral-400">&bull; {step.year}</span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="font-serif font-medium text-[32px] sm:text-[38px] leading-[1.15] text-[#f2f5f8] my-2">
                     {step.title}
                   </h3>
-                  <p className="text-[#9aa6b4] max-w-[440px] text-sm leading-relaxed">
+
+                  {/* Paragraph */}
+                  <p className="text-[#9aa6b4] max-w-[480px] text-sm sm:text-[15px] leading-relaxed mb-4">
                     {step.desc}
                   </p>
+
+                  {/* Detailed Bullet Points */}
+                  <ul className="space-y-2 max-w-[460px] pt-2 border-t border-white/[0.08]">
+                    {step.keyPoints.map((point, pIdx) => (
+                      <li key={pIdx} className="flex items-start gap-2.5 text-xs text-neutral-300 font-body">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#9cc9ee] shrink-0 mt-1.5" />
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </article>
               );
             })}
@@ -377,15 +669,21 @@ export function ParallaxComponent({ className = '' }: ParallaxComponentProps) {
 
       {/* 3. 14 PEAKS PINNED HORIZONTAL TRACK */}
       <section id="peaks" ref={peaksRef} className="relative w-full">
-        <div className="sticky top-0 h-[100vh] h-[100svh] overflow-hidden flex flex-col justify-center gap-[3vh] pt-10 bg-[radial-gradient(ellipse_at_50%_120%,#17324d,#06080c_65%)]">
-          <div className="px-[6%]">
-            <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-[#9aa6b4]">
-              Project Possible &middot; 2019
-            </span>
-            <h2 className="font-serif font-medium text-[clamp(40px,5vw,72px)] leading-none text-[#f2f5f8] mt-1">
-              14 Peaks
-            </h2>
-            <div className="flex gap-8 flex-wrap mt-3">
+        <div className="sticky top-0 h-[100vh] h-[100svh] overflow-hidden flex flex-col justify-center gap-[2.5vh] pt-8 bg-[radial-gradient(ellipse_at_50%_120%,#17324d,#06080c_65%)]">
+          
+          {/* Header & Expedition Telemetry */}
+          <div className="px-[6%] flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-2 font-mono text-[11px] tracking-[0.14em] uppercase text-[#9aa6b4]">
+                <span className="w-2 h-2 rounded-full bg-[#9cc9ee]" />
+                <span>Project Possible &middot; 2019 Historic World Record</span>
+              </div>
+              <h2 className="font-serif font-medium text-[clamp(40px,5vw,72px)] leading-none text-[#f2f5f8] mt-1">
+                14 Peaks Above 8,000m
+              </h2>
+            </div>
+
+            <div className="flex gap-6 sm:gap-8 flex-wrap">
               <span className="flex items-baseline">
                 <b className="font-serif font-medium text-[34px] mr-2 text-[#f2f5f8]">14</b>
                 <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-[#9aa6b4]">Summits</span>
@@ -395,8 +693,8 @@ export function ParallaxComponent({ className = '' }: ParallaxComponentProps) {
                 <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-[#9aa6b4]">Days</span>
               </span>
               <span className="flex items-baseline">
-                <b className="font-serif font-medium text-[34px] mr-2 text-[#f2f5f8]">8,000+</b>
-                <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-[#9aa6b4]">Metres</span>
+                <b className="font-serif font-medium text-[34px] mr-2 text-[#f2f5f8]">0</b>
+                <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-[#9cc9ee]">Casualties</span>
               </span>
             </div>
           </div>
@@ -407,12 +705,19 @@ export function ParallaxComponent({ className = '' }: ParallaxComponentProps) {
             ref={trackRef}
             className="flex gap-[18px] px-[6%] w-max will-change-transform"
           >
-            {peaksData.map((peak, idx) => {
+            {peaksData.map((peak) => {
               const mountainHeightPercent = 35 + ((peak.height - 8000) / 849) * 30;
+              const isSelected = activePeak?.id === peak.id;
+
               return (
                 <article
                   key={peak.name}
-                  className="w-[min(300px,75vw)] h-[min(380px,46svh)] p-[22px] border border-white/10 hover:border-[#9cc9ee] rounded-[18px] flex flex-col justify-between relative overflow-hidden bg-gradient-to-b from-white/[0.04] to-white/[0.01] transition-colors duration-300 group shadow-xl"
+                  onClick={() => setActivePeak(isSelected ? null : peak)}
+                  className={`w-[min(320px,78vw)] h-[min(410px,50svh)] p-[22px] border rounded-[18px] flex flex-col justify-between relative overflow-hidden bg-gradient-to-b from-white/[0.04] to-white/[0.01] transition-all duration-300 group shadow-xl cursor-pointer ${
+                    isSelected
+                      ? 'border-[#9cc9ee] ring-1 ring-[#9cc9ee]/40 bg-white/[0.07]'
+                      : 'border-white/10 hover:border-[#9cc9ee]/70'
+                  }`}
                 >
                   {/* Peak Mountain Silhouette Polygon */}
                   <i
@@ -424,20 +729,43 @@ export function ParallaxComponent({ className = '' }: ParallaxComponentProps) {
                     }}
                   />
 
-                  <span className="relative font-mono text-[11px] tracking-[0.14em] uppercase text-[#9aa6b4]">
-                    {String(idx + 1).padStart(2, '0')} / 14
-                  </span>
+                  {/* Top Bar of the Card */}
+                  <div className="relative flex items-center justify-between text-[11px] font-mono text-[#9aa6b4]">
+                    <span className="tracking-[0.14em] uppercase font-bold text-white/90">
+                      {peak.id} / 14
+                    </span>
+                    <span className="px-2 py-0.5 rounded-full bg-white/10 text-[10px] text-[#9cc9ee] border border-white/10">
+                      {peak.country}
+                    </span>
+                  </div>
 
-                  <div className="relative">
-                    <h3 className="font-serif font-medium text-[30px] leading-[1.1] text-[#f2f5f8]">
+                  {/* Middle Content */}
+                  <div className="relative z-10 space-y-2">
+                    <span className="text-[10px] font-mono tracking-widest uppercase text-neutral-400 block">
+                      {peak.range}
+                    </span>
+                    <h3 className="font-serif font-medium text-[30px] sm:text-[32px] leading-[1.05] text-[#f2f5f8]">
                       {peak.name}
                     </h3>
-                    <strong className="text-[26px] font-medium text-white block mt-0.5">
-                      {peak.height.toLocaleString('en')} m
-                    </strong>
-                    <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-[#9aa6b4] block mt-1">
-                      {peak.date} 2019
-                    </span>
+                    <div className="flex items-baseline gap-2">
+                      <strong className="text-[26px] font-medium text-white">
+                        {peak.height.toLocaleString('en')} m
+                      </strong>
+                      <span className="text-xs font-mono text-neutral-400">
+                        ({Math.round(peak.height * 3.28084).toLocaleString()} ft)
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Bottom Metadata & Notes */}
+                  <div className="relative z-10 pt-2 border-t border-white/10 text-xs text-neutral-300">
+                    <p className="line-clamp-2 text-[11px] text-neutral-400 mb-1 leading-snug">
+                      {peak.notes}
+                    </p>
+                    <div className="flex items-center justify-between font-mono text-[10px] text-[#9cc9ee] mt-2">
+                      <span>{peak.date}</span>
+                      <span className="text-white/60">{peak.oxygen}</span>
+                    </div>
                   </div>
                 </article>
               );
@@ -453,9 +781,15 @@ export function ParallaxComponent({ className = '' }: ParallaxComponentProps) {
             />
           </div>
 
-          <p className="px-[6%] text-[11px] text-[#9aa6b4] max-w-4xl">
-            The 189-day record has since been broken. Later research found he stopped short of the true summits of Dhaulagiri and Manaslu in 2019; he reached both in 2021.
-          </p>
+          {/* Bottom Historical Context Note */}
+          <div className="px-[6%] flex items-center justify-between text-[11px] text-[#9aa6b4]">
+            <p className="max-w-3xl leading-relaxed">
+              The 189-day record has since been broken. Later research found he stopped short of the true summits of Dhaulagiri and Manaslu in 2019; he reached both in 2021.
+            </p>
+            <span className="hidden md:inline font-mono text-[10px] text-neutral-500 uppercase tracking-wider">
+              SWIPE / SCROLL TO TRACK &rarr;
+            </span>
+          </div>
         </div>
       </section>
 
