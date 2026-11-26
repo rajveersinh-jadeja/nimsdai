@@ -165,26 +165,29 @@ export function Navbar({
         }
       }).__lenis;
 
+      const smoothEase = (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t));
+
       if (targetId === 'story' && !targetElement) {
         if (lenisInstance) {
-          lenisInstance.scrollTo(0, { immediate: true, onComplete: unlock });
+          lenisInstance.scrollTo(0, { duration: 1.1, easing: smoothEase, onComplete: unlock });
         } else {
-          window.scrollTo({ top: 0, behavior: 'instant' });
+          window.scrollTo({ top: 0, behavior: 'smooth' });
           unlock();
         }
       } else if (targetElement) {
         if (lenisInstance) {
           lenisInstance.scrollTo(targetElement, {
             offset: -70,
-            immediate: true,
+            duration: 1.1,
+            easing: smoothEase,
             onComplete: unlock,
           });
         } else {
-          targetElement.scrollIntoView({ behavior: 'instant', block: 'start' });
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
           unlock();
         }
       } else {
-        window.scrollTo({ top: 0, behavior: 'instant' });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         unlock();
       }
     }
