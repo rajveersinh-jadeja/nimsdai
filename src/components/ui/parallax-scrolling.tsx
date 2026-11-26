@@ -209,66 +209,55 @@ export function ParallaxComponent({
 
   return (
     <div className={`parallax ${className}`.trim()} ref={parallaxRef}>
-      {/* Hero Section with 155vh Balanced Scroll Distance */}
-      <section className="parallax__header">
-        <div className="parallax__visuals">
+      {/* Hero Section with Towering Alpine Apex & Architectural Serif Typography */}
+      <section className="parallax__header relative w-full h-[100vh] overflow-hidden bg-[#04060a]">
+        <div className="parallax__visuals relative w-full h-full">
           <div className="parallax__black-line-overflow"></div>
 
           {/* Visual Canvas Container */}
           <div data-parallax-layers className="parallax__layers relative w-full h-full overflow-hidden">
 
-            {/* Layer 1: High-Resolution Nimsdai Photograph */}
+            {/* Layer 1: Dramatic Himalayan Snowy Summit (Ascent Peak) */}
             <div className="absolute inset-0 w-full h-full overflow-hidden">
               <img
                 data-hero-img
-                src={heroImage}
+                src="/images/himalaya-peak-bg.jpg"
                 loading="eager"
-                alt="Nirmal Nims Purja MBE on Himalayan Summit"
-                className="w-full h-full object-cover object-center transform-gpu will-change-transform"
+                alt="Towering snowy Himalayan peak"
+                className="w-full h-full object-cover object-[center_35%] transform-gpu will-change-transform filter brightness-[0.82] contrast-[1.18]"
               />
-              {/* Natural mountain gradient for crystal-clear typography readability */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-black/20 pointer-events-none" />
+              {/* Deep atmospheric dark vignettes */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#05070c] via-transparent to-[#04060a]/85 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-b from-[#04060a]/70 via-transparent to-[#05070c] pointer-events-none" />
             </div>
 
-            {/* Layer 2: Editorial Typography & Narrative CTA (Scroll scrub target) */}
+            {/* Layer 2: Towering Architectural Serif Headline Across the Mountain Peak */}
             <div
               data-hero-scroll-overlay
-              className="absolute inset-0 z-20 pointer-events-none flex flex-col justify-end p-6 sm:p-10 md:p-14"
+              className="absolute inset-0 z-20 pointer-events-none flex flex-col justify-between items-center p-6 sm:p-12 md:p-16"
             >
-              <div className="w-full flex flex-col md:flex-row items-start md:items-end justify-between gap-6 pb-2">
+              {/* Top Subtitle Rail */}
+              <div data-hero-entrance-left className="w-full max-w-7xl flex items-center justify-between text-xs font-mono text-neutral-400 tracking-[0.25em] uppercase pt-16 sm:pt-20">
+                <span>14 Peaks &middot; 8,000m</span>
+                <span className="hidden sm:inline">Project Possible</span>
+              </div>
 
-                {/* Bottom Left Display Title: Nimsdai (Entrance target left) */}
-                <div data-hero-entrance-left className="pointer-events-auto">
-                  <h1
-                    className="font-display text-6xl sm:text-8xl md:text-9xl font-extrabold tracking-[-0.04em] text-white leading-none select-none drop-shadow-[0_12px_30px_rgba(0,0,0,0.85)]"
-                  >
-                    {title}
-                  </h1>
-                  <p className="font-heading text-xs sm:text-sm font-semibold text-neutral-300 mt-2.5 drop-shadow-md tracking-tight flex items-center gap-2">
-                    <span>14 Peaks &mdash; Nothing Is Impossible</span>
-                  </p>
-                </div>
-
-                {/* Bottom Right Narrative & Pill CTA Button (Entrance target right) */}
-                <div
-                  data-hero-entrance-right
-                  className="pointer-events-auto max-w-md text-left md:text-right flex flex-col items-start md:items-end gap-3.5"
+              {/* Towering Serif Title: NIMSDAL piercing the peak like ASCENT */}
+              <div data-hero-entrance-left className="text-center w-full px-4 select-none my-auto">
+                <h1
+                  className="font-serif text-[18vw] sm:text-[19vw] lg:text-[200px] xl:text-[240px] font-normal tracking-[0.08em] sm:tracking-[0.14em] text-transparent bg-clip-text bg-gradient-to-b from-white via-[#f0f4f8] to-white/40 leading-none drop-shadow-[0_20px_50px_rgba(0,0,0,0.95)]"
                 >
-                  <p className="font-body text-xs sm:text-sm text-neutral-200/95 leading-relaxed font-normal drop-shadow-md tracking-normal">
-                    {tagline}
-                  </p>
+                  NIMSDAI
+                </h1>
+                <p className="font-heading text-xs sm:text-sm md:text-base font-medium uppercase tracking-[0.35em] text-neutral-300 mt-3 sm:mt-5 drop-shadow-md">
+                  14 PEAKS &middot; NOTHING IS IMPOSSIBLE &middot; 189 DAYS
+                </p>
+              </div>
 
-                  <a
-                    href="#peaks"
-                    className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-black/85 hover:bg-black text-white font-heading text-xs sm:text-sm font-semibold tracking-tight backdrop-blur-xl border border-white/20 hover:border-white/40 transition-all duration-300 shadow-xl shadow-black/60 group hover:scale-[1.03] active:scale-95"
-                  >
-                    <span>Explore 14 Peaks</span>
-                    <span className="w-6 h-6 rounded-full bg-white/15 group-hover:bg-white group-hover:text-black flex items-center justify-center transition-colors duration-200">
-                      <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" weight="bold" />
-                    </span>
-                  </a>
-                </div>
-
+              {/* Bottom Subtle Scroll Indicator */}
+              <div data-hero-entrance-right className="flex flex-col items-center gap-2 text-neutral-400 text-xs font-mono tracking-widest pb-4">
+                <span>SCROLL TO EXPLORE</span>
+                <span className="w-px h-8 bg-gradient-to-b from-white/60 to-transparent animate-pulse" />
               </div>
             </div>
 
@@ -281,6 +270,69 @@ export function ParallaxComponent({
       {/* Main Content Sections */}
       <section className="parallax__content w-full bg-[#05070c] text-white">
         <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 space-y-32 sm:space-y-44 lg:space-y-52">
+
+          {/* Dedicated Cinematic Expedition Showcase: Nimsdai's Iconic Summit Photo & Bio */}
+          <div data-reveal className="relative rounded-3xl bg-[#080d16] border border-white/[0.09] overflow-hidden grid grid-cols-1 lg:grid-cols-12 items-stretch shadow-[0_24px_64px_rgba(0,0,0,0.7)] group">
+            {/* Left Narrative Column */}
+            <div className="lg:col-span-7 p-8 sm:p-12 lg:p-14 flex flex-col justify-between space-y-8 relative z-10">
+              <div className="space-y-4">
+                <div className="flex items-center gap-2.5 font-heading text-xs font-semibold uppercase tracking-[0.2em] text-neutral-400">
+                  <span className="w-6 h-px bg-white/40" />
+                  <span>Mountaineer &middot; Leader &middot; Pioneer</span>
+                </div>
+                <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-[-0.035em] text-white leading-[1.05]">
+                  Nirmal Purja MBE
+                </h2>
+                <p className="font-body text-sm sm:text-base text-neutral-300 leading-relaxed max-w-xl">
+                  {tagline}
+                </p>
+              </div>
+
+              {/* Badges & Actions */}
+              <div className="space-y-6 pt-4 border-t border-white/[0.08]">
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-white font-mono text-xs">
+                    Former UK SBS Special Forces
+                  </span>
+                  <span className="px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-white font-mono text-xs">
+                    Gurkha Brotherhood
+                  </span>
+                  <span className="px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-white font-mono text-xs">
+                    0 Expedition Casualties
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <a
+                    href="#peaks"
+                    className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white text-black font-heading text-xs sm:text-sm font-bold tracking-tight hover:bg-neutral-200 transition-all duration-300 shadow-xl group/btn hover:scale-[1.02] active:scale-95"
+                  >
+                    <span>Explore 14 Peaks</span>
+                    <span className="w-6 h-6 rounded-full bg-black/10 group-hover/btn:bg-black group-hover/btn:text-white flex items-center justify-center transition-colors">
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-0.5" weight="bold" />
+                    </span>
+                  </a>
+                  <a
+                    href="#story"
+                    className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-white font-heading text-xs sm:text-sm font-semibold transition-all duration-200"
+                  >
+                    <span>Read Chronicle</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: Iconic High-Resolution Portrait with Summit Ridge Gear */}
+            <div className="lg:col-span-5 relative min-h-[360px] lg:min-h-full overflow-hidden border-t lg:border-t-0 lg:border-l border-white/[0.08]">
+              <img
+                src={heroImage}
+                alt="Nirmal Nims Purja MBE in expedition gear against Himalayan mountain vista"
+                className="w-full h-full object-cover object-[center_25%] contrast-[1.12] brightness-[0.88] transition-transform duration-1000 group-hover:scale-103"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#080d16] via-transparent to-transparent lg:hidden pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#080d16] via-transparent to-transparent hidden lg:block pointer-events-none" />
+            </div>
+          </div>
 
           {/* Section 1: Our Story (#story) — Bold Magazine Editorial & Timeline Layout */}
           <div id="story" className="scroll-mt-28 space-y-16 sm:space-y-24 relative">
