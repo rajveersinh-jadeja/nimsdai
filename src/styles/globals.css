@@ -3,19 +3,21 @@
 @theme {
   --font-display: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-heading: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-serif: 'Source Serif 4', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 }
 
 :root {
   --font-display: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-heading: 'Plus Jakarta Sans', 'Inter', sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-serif: 'Source Serif 4', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
-  --background: #05070c;
-  --foreground: #f8fafc;
+  --background: #06080c;
+  --foreground: #f2f5f8;
+  --ice: #9cc9ee;
+  --mute: #9aa6b4;
 }
 
 body {
