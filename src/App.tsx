@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navbar } from '@/components/navbar';
 import ParallaxDemo from '@/demos/default';
+import { FeatureBento } from '@/components/ui/feature-bento';
 import NimsdaiFooterDemo from '@/components/ui/demo';
 
 export default function App() {

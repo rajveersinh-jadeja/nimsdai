@@ -22,7 +22,6 @@ export const defaultNavItems: NavItem[] = [
   { label: '14 Peaks', href: '#peaks' },
   { label: 'K2 Winter', href: '#k2' },
   { label: 'Foundation', href: '#foundation' },
-  { label: 'Inquiries', href: '#inquiries' },
 ];
 
 export function Navbar({
@@ -149,13 +148,13 @@ export function Navbar({
       const targetId = item.href.substring(1);
       const targetElement = document.getElementById(targetId);
 
-      const lenisInstance = (window as unknown as { 
-        __lenis?: { 
+      const lenisInstance = (window as unknown as {
+        __lenis?: {
           scrollTo: (
             target: HTMLElement | number,
             options?: { offset?: number; duration?: number; easing?: (t: number) => number; onComplete?: () => void }
-          ) => void 
-        } 
+          ) => void
+        }
       }).__lenis;
 
       const smoothEase = (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t));
@@ -165,7 +164,7 @@ export function Navbar({
           lenisInstance.scrollTo(0, { duration: 1.2, easing: smoothEase, onComplete: unlockScrollspy });
         } else if (targetElement) {
           const targetTop = Math.max(0, targetElement.getBoundingClientRect().top + window.scrollY - 90);
-          lenisInstance.scrollTo(targetTop, { 
+          lenisInstance.scrollTo(targetTop, {
             duration: 1.2,
             easing: smoothEase,
             onComplete: unlockScrollspy,
@@ -187,12 +186,11 @@ export function Navbar({
       className={`fixed top-0 left-1/2 -translate-x-1/2 z-[100] w-auto max-w-fit pointer-events-auto transition-all duration-300 ${className}`.trim()}
     >
       {/* Top-Docked Capsule Container: 0 top margin, flat top, rounded bottom */}
-      <div 
-        className={`flex items-center justify-center px-4 py-2 sm:px-6 sm:py-2.5 rounded-b-2xl rounded-t-none border-x border-b border-t-0 transition-all duration-300 ease-out ${
-          isScrolled
+      <div
+        className={`flex items-center justify-center px-4 py-2 sm:px-6 sm:py-2.5 rounded-b-2xl rounded-t-none border-x border-b border-t-0 transition-all duration-300 ease-out ${isScrolled
             ? 'bg-black/90 backdrop-blur-2xl border-white/20 shadow-[0_12px_32px_rgba(0,0,0,0.85)]'
             : 'bg-black/80 backdrop-blur-xl border-white/15 shadow-[0_8px_24px_rgba(0,0,0,0.6)]'
-        }`}
+          }`}
       >
         {/* Desktop Links Container */}
         <div className="hidden sm:flex items-center gap-1.5 relative">
@@ -203,11 +201,10 @@ export function Navbar({
                 key={item.label}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item)}
-                className={`relative whitespace-nowrap px-3.5 md:px-4 py-1.5 rounded-full font-heading text-xs md:text-[13px] font-medium select-none transition-all duration-200 ease-out ${
-                  isActive
+                className={`relative whitespace-nowrap px-3.5 md:px-4 py-1.5 rounded-full font-heading text-xs md:text-[13px] font-medium select-none transition-all duration-200 ease-out ${isActive
                     ? 'text-white font-semibold bg-white/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),0_2px_8px_rgba(0,0,0,0.4)] backdrop-blur-md'
                     : 'text-neutral-300 hover:text-white hover:bg-white/10'
-                }`}
+                  }`}
               >
                 <span className="inline-block transition-transform duration-150 active:scale-95">
                   {item.label}
@@ -242,11 +239,10 @@ export function Navbar({
               key={item.label}
               href={item.href}
               onClick={(e) => handleNavClick(e, item)}
-              className={`px-4 py-2.5 font-heading text-xs font-semibold rounded-xl transition-all duration-150 flex items-center justify-between active:scale-98 ${
-                active === item.label
+              className={`px-4 py-2.5 font-heading text-xs font-semibold rounded-xl transition-all duration-150 flex items-center justify-between active:scale-98 ${active === item.label
                   ? 'bg-white/20 text-white font-bold shadow-inner'
                   : 'text-neutral-300 hover:bg-white/10 hover:text-white'
-              }`}
+                }`}
             >
               <span>{item.label}</span>
               <ArrowUpRight className="w-3.5 h-3.5 opacity-60" weight="bold" />

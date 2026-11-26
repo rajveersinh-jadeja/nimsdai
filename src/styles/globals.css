@@ -55,7 +55,7 @@ body {
   letter-spacing: -0.01em;
 }
 
-/* Lenis smooth scrolling recommendations */
+/* Lenis smooth scrolling */
 html.lenis, html.lenis body {
   height: auto;
 }
@@ -80,7 +80,6 @@ html.lenis, html.lenis body {
   overflow: hidden;
 }
 
-/* Balanced 145vh height for smooth scroll travel without dead space */
 .parallax__header {
   position: relative;
   height: 145vh;
@@ -115,42 +114,6 @@ html.lenis, html.lenis body {
   overflow: hidden;
 }
 
-.parallax__layer-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  pointer-events: none;
-  transform: translate3d(0, 0, 0);
-  will-change: transform;
-}
-
-.parallax__title {
-  font-family: var(--font-display);
-  font-size: clamp(3.5rem, 12vw, 10rem);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  word-spacing: normal;
-  color: #ffffff;
-  line-height: 0.88;
-  margin: 0;
-  text-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 2px 10px rgba(0, 0, 0, 0.6);
-}
-
-.parallax__subtitle {
-  font-family: var(--font-heading);
-  font-size: clamp(0.85rem, 2vw, 1.15rem);
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  word-spacing: normal;
-  color: #fbbf24;
-  margin-top: 0.75rem;
-  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
-}
-
-/* Soft transition gradient blending into the next section */
 .parallax__fade {
   position: absolute;
   bottom: 0;
@@ -162,7 +125,6 @@ html.lenis, html.lenis body {
   z-index: 10;
 }
 
-/* Content container cleanly styled with proper editorial spacing */
 .parallax__content {
   position: relative;
   z-index: 20;
@@ -174,6 +136,87 @@ html.lenis, html.lenis body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+/* ==========================================================================
+   CSS Keyframes & Ambient Motion System
+   ========================================================================== */
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes border-glow {
+  0%, 100% {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+  50% {
+    border-color: rgba(255, 255, 255, 0.18);
+  }
+}
+
+@keyframes mist-drift {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  50% {
+    transform: translateX(-2%) translateY(-1%);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+/* Scroll reveal utility hooks */
+.reveal-fade {
+  opacity: 0;
+  transform: translateY(24px);
+  will-change: transform, opacity;
+}
+
+.reveal-fade-in {
+  opacity: 0;
+  will-change: opacity;
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.96);
+  will-change: transform, opacity;
+}
+
+/* Interactive & hover classes */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.7);
 }
 
 .osmo-icon-svg {
@@ -196,20 +239,4 @@ html.lenis, html.lenis body {
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   color: #94a3b8;
   font-size: 0.875rem;
-}
-
-.osmo-credits__p {
-  margin: 0;
-  font-family: var(--font-body);
-}
-
-.osmo-credits__p-a {
-  color: #e4e4e7;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  transition: color 0.2s ease;
-}
-
-.osmo-credits__p-a:hover {
-  color: #ffffff;
 }

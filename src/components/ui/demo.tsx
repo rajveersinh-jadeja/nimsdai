@@ -38,7 +38,7 @@ export default function NimsdaiFooterDemo() {
               { label: "Nimsdai Foundation", href: "https://www.nimsdaifoundation.org", badge: "Impact" },
               { label: "Big Mountain Cleanup", href: "#foundation" },
               { label: "Official Archive Verification", href: "https://www.nimsdai.com" },
-              { label: "Expedition Inquiries", href: "#inquiries" },
+              { label: "Elite Expeditions", href: "https://www.eliteexped.com" },
             ],
           },
         ]}
