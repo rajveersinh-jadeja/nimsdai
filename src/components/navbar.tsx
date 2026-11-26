@@ -136,11 +136,21 @@ export function Navbar({
       if (scrollLockRef.current !== null) {
         window.clearTimeout(scrollLockRef.current);
       }
+
+      // Temporarily disable horizontal reel pinning during navbar jump so the page scrolls freely to the target
+      const reelTrigger = (window as unknown as { __expeditionScrollTrigger?: { disable: (revert?: boolean) => void; enable: () => void } }).__expeditionScrollTrigger;
+      if (reelTrigger && typeof reelTrigger.disable === 'function') {
+        reelTrigger.disable(false);
+      }
+
       const unlockScrollspy = () => {
         isProgrammaticScrollRef.current = false;
         if (scrollLockRef.current !== null) {
           window.clearTimeout(scrollLockRef.current);
           scrollLockRef.current = null;
+        }
+        if (reelTrigger && typeof reelTrigger.enable === 'function') {
+          reelTrigger.enable();
         }
       };
       scrollLockRef.current = window.setTimeout(unlockScrollspy, 1400);

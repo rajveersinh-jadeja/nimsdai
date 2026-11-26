@@ -80,6 +80,7 @@ export function HorizontalScrollExpeditions() {
         x: () => -getScrollDistance(),
         ease: "none",
         scrollTrigger: {
+          id: "expeditionReelTrigger",
           trigger: section,
           start: "top top",
           end: () => `+=${getScrollDistance()}`,
@@ -92,6 +93,7 @@ export function HorizontalScrollExpeditions() {
       });
 
       stInstance = horizontalTween.scrollTrigger || null;
+      (window as unknown as { __expeditionScrollTrigger?: ScrollTrigger | null }).__expeditionScrollTrigger = stInstance;
     }, sectionRef);
 
     // Ensure ScrollTrigger updates after Lenis, fonts, or images resolve
