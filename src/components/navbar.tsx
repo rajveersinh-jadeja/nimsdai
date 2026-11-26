@@ -217,8 +217,8 @@ export function Navbar({
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item)}
                 className={`relative whitespace-nowrap px-3.5 md:px-4 py-1.5 rounded-full font-heading text-xs md:text-[13px] font-medium select-none transition-all duration-200 ease-out ${isActive
-                    ? 'text-white font-semibold bg-white/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),0_2px_8px_rgba(0,0,0,0.4)] backdrop-blur-md'
-                    : 'text-neutral-300 hover:text-white hover:bg-white/10'
+                    ? 'text-white font-semibold bg-[#9cc9ee]/20 text-[#9cc9ee] border border-[#9cc9ee]/30 shadow-[inset_0_1px_1px_rgba(156,201,238,0.4),0_2px_12px_rgba(156,201,238,0.2)] backdrop-blur-md'
+                    : 'text-neutral-300 hover:text-[#9cc9ee] hover:bg-[#9cc9ee]/10'
                   }`}
               >
                 <span className="inline-block transition-transform duration-150 active:scale-95">

@@ -25,42 +25,42 @@ const PHASES: {
   dates: string;
   peaks: Peak[];
 }[] = [
-  {
-    numeral: "I",
-    region: "Nepal",
-    dates: "23 Apr — 24 May 2019",
-    peaks: [
-      { name: "Annapurna I", altitude: 8091, date: "23 Apr", country: "Nepal" },
-      { name: "Dhaulagiri", altitude: 8167, date: "12 May", country: "Nepal" },
-      { name: "Kanchenjunga", altitude: 8586, date: "15 May", country: "Nepal" },
-      { name: "Mt. Everest", altitude: 8848, date: "22 May", country: "Nepal" },
-      { name: "Lhotse", altitude: 8516, date: "22 May", country: "Nepal" },
-      { name: "Makalu", altitude: 8485, date: "24 May", country: "Nepal" },
-    ],
-  },
-  {
-    numeral: "II",
-    region: "Karakoram",
-    dates: "3 Jul — 26 Jul 2019",
-    peaks: [
-      { name: "Nanga Parbat", altitude: 8126, date: "03 Jul", country: "Pakistan" },
-      { name: "Gasherbrum I", altitude: 8080, date: "15 Jul", country: "Pakistan" },
-      { name: "Gasherbrum II", altitude: 8034, date: "18 Jul", country: "Pakistan" },
-      { name: "K2", altitude: 8611, date: "24 Jul", country: "Pakistan" },
-      { name: "Broad Peak", altitude: 8051, date: "26 Jul", country: "Pakistan" },
-    ],
-  },
-  {
-    numeral: "III",
-    region: "Tibet & Nepal",
-    dates: "23 Sep — 29 Oct 2019",
-    peaks: [
-      { name: "Cho Oyu", altitude: 8188, date: "23 Sep", country: "Tibet" },
-      { name: "Manaslu", altitude: 8163, date: "27 Sep", country: "Nepal" },
-      { name: "Shishapangma", altitude: 8027, date: "29 Oct", country: "Tibet" },
-    ],
-  },
-];
+    {
+      numeral: "I",
+      region: "Nepal",
+      dates: "23 Apr — 24 May 2019",
+      peaks: [
+        { name: "Annapurna I", altitude: 8091, date: "23 Apr", country: "Nepal" },
+        { name: "Dhaulagiri", altitude: 8167, date: "12 May", country: "Nepal" },
+        { name: "Kanchenjunga", altitude: 8586, date: "15 May", country: "Nepal" },
+        { name: "Mt. Everest", altitude: 8848, date: "22 May", country: "Nepal" },
+        { name: "Lhotse", altitude: 8516, date: "22 May", country: "Nepal" },
+        { name: "Makalu", altitude: 8485, date: "24 May", country: "Nepal" },
+      ],
+    },
+    {
+      numeral: "II",
+      region: "Karakoram",
+      dates: "3 Jul — 26 Jul 2019",
+      peaks: [
+        { name: "Nanga Parbat", altitude: 8126, date: "03 Jul", country: "Pakistan" },
+        { name: "Gasherbrum I", altitude: 8080, date: "15 Jul", country: "Pakistan" },
+        { name: "Gasherbrum II", altitude: 8034, date: "18 Jul", country: "Pakistan" },
+        { name: "K2", altitude: 8611, date: "24 Jul", country: "Pakistan" },
+        { name: "Broad Peak", altitude: 8051, date: "26 Jul", country: "Pakistan" },
+      ],
+    },
+    {
+      numeral: "III",
+      region: "Tibet & Nepal",
+      dates: "23 Sep — 29 Oct 2019",
+      peaks: [
+        { name: "Cho Oyu", altitude: 8188, date: "23 Sep", country: "Tibet" },
+        { name: "Manaslu", altitude: 8163, date: "27 Sep", country: "Nepal" },
+        { name: "Shishapangma", altitude: 8027, date: "29 Oct", country: "Tibet" },
+      ],
+    },
+  ];
 
 export const FeatureBento: React.FC = () => {
   return (
@@ -69,17 +69,17 @@ export const FeatureBento: React.FC = () => {
       <BlurFade delay={0.05} inView>
         <div className="mb-6 sm:mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4 border-b border-white/[0.08] pb-5 sm:pb-6">
           <div>
-            <div className="flex items-center gap-2 text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-neutral-400">
-              <span className="w-4 sm:w-5 h-px bg-neutral-400" />
+            <div className="flex items-center gap-2 text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#9cc9ee]">
+              <span className="w-4 sm:w-5 h-px bg-[#9cc9ee]" />
               <span>Project Possible &middot; Complete Expedition Ledger</span>
             </div>
             <h3 className="mt-2 text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white font-display">
               Fourteen Summits, One Season
             </h3>
           </div>
-          <div className="flex items-center gap-2 text-xs text-neutral-400 self-start sm:self-auto">
-            <ShieldCheck className="w-4 h-4 text-neutral-400 shrink-0" weight="duotone" />
-            <span className="font-medium tracking-tight">14/14 Official UIAA &amp; Himalayan Database Verified</span>
+          <div className="flex items-center gap-2 text-xs text-[#9cc9ee] self-start sm:self-auto bg-[#9cc9ee]/10 px-3 py-1.5 rounded-full border border-[#9cc9ee]/25">
+            <ShieldCheck className="w-4 h-4 text-[#9cc9ee] shrink-0" weight="duotone" />
+            <span className="font-medium tracking-tight text-white">14/14 Official UIAA &amp; Himalayan Database Verified</span>
           </div>
         </div>
       </BlurFade>

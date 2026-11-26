@@ -6,6 +6,9 @@
   --font-body: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --color-ice: #9cc9ee;
+  --color-ice-dim: rgba(156, 201, 238, 0.2);
+  --color-ice-glow: rgba(156, 201, 238, 0.12);
 }
 
 :root {
@@ -17,6 +20,7 @@
   --background: #06080c;
   --foreground: #f2f5f8;
   --ice: #9cc9ee;
+  --ice-glow: rgba(156, 201, 238, 0.15);
   --mute: #9aa6b4;
 }
 

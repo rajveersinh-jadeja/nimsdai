@@ -90,8 +90,8 @@ export function HorizontalScrollExpeditions() {
       {/* Top Header Rail */}
       <header className="relative z-20 w-full max-w-7xl mx-auto px-6 sm:px-12 pb-8 flex flex-col sm:flex-row sm:items-end justify-between border-b border-white/[0.08] gap-4">
         <div className="space-y-2">
-          <div className="flex items-center gap-2.5 font-heading text-xs font-semibold uppercase tracking-[0.2em] text-neutral-400">
-            <span className="w-6 h-px bg-white/40" />
+          <div className="flex items-center gap-2.5 font-heading text-xs font-semibold uppercase tracking-[0.2em] text-[#9cc9ee]">
+            <span className="w-6 h-px bg-[#9cc9ee]" />
             <span>03 &mdash; Project Possible Historical Reel</span>
           </div>
           <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-[-0.03em] text-white">
