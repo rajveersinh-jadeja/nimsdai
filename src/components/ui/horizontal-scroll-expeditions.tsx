@@ -76,6 +76,10 @@ export function HorizontalScrollExpeditions() {
       // Horizontal scroll distance equals total width of the track minus the viewport width
       const getScrollDistance = () => Math.max(0, track.scrollWidth - window.innerWidth);
 
+      // Short, responsive scroll lock distance: responsive and fast (half distance or capped at 1.2x viewport height)
+      // This prevents the page from feeling trapped in an overly long scroll lock
+      const getPinDuration = () => Math.min(window.innerHeight * 1.3, getScrollDistance() * 0.75);
+
       const horizontalTween = gsap.to(track, {
         x: () => -getScrollDistance(),
         ease: "none",
@@ -83,8 +87,8 @@ export function HorizontalScrollExpeditions() {
           id: "expeditionReelTrigger",
           trigger: section,
           start: "top top",
-          end: () => `+=${getScrollDistance()}`,
-          scrub: 1,
+          end: () => `+=${getPinDuration()}`,
+          scrub: 0.8,
           pin: true,
           pinSpacing: true,
           anticipatePin: 1,

@@ -131,19 +131,21 @@ export function Navbar({
       setActive(item.label);
       setMobileOpen(false);
 
-      // Lock scrollspy during programmatic smooth scroll
-      isProgrammaticScrollRef.current = true;
-      if (scrollLockRef.current !== null) {
-        window.clearTimeout(scrollLockRef.current);
-      }
+      const targetId = item.href.substring(1);
+      const targetElement = document.getElementById(targetId);
 
-      // Temporarily disable horizontal reel pinning during navbar jump so the page scrolls freely to the target
+      // Temporarily disable the pin lock while jumping
       const reelTrigger = (window as unknown as { __expeditionScrollTrigger?: { disable: (revert?: boolean) => void; enable: () => void } }).__expeditionScrollTrigger;
       if (reelTrigger && typeof reelTrigger.disable === 'function') {
         reelTrigger.disable(false);
       }
 
-      const unlockScrollspy = () => {
+      isProgrammaticScrollRef.current = true;
+      if (scrollLockRef.current !== null) {
+        window.clearTimeout(scrollLockRef.current);
+      }
+
+      const unlock = () => {
         isProgrammaticScrollRef.current = false;
         if (scrollLockRef.current !== null) {
           window.clearTimeout(scrollLockRef.current);
@@ -153,38 +155,37 @@ export function Navbar({
           reelTrigger.enable();
         }
       };
-      scrollLockRef.current = window.setTimeout(unlockScrollspy, 1400);
-
-      const targetId = item.href.substring(1);
-      const targetElement = document.getElementById(targetId);
 
       const lenisInstance = (window as unknown as {
         __lenis?: {
           scrollTo: (
             target: HTMLElement | number,
-            options?: { offset?: number; duration?: number; easing?: (t: number) => number; onComplete?: () => void }
+            options?: { offset?: number; immediate?: boolean; duration?: number; onComplete?: () => void }
           ) => void
         }
       }).__lenis;
 
-      const smoothEase = (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t));
-
-      if (lenisInstance) {
-        if (targetId === 'story' && !targetElement) {
-          lenisInstance.scrollTo(0, { duration: 1.2, easing: smoothEase, onComplete: unlockScrollspy });
-        } else if (targetElement) {
-          const targetTop = Math.max(0, targetElement.getBoundingClientRect().top + window.scrollY - 90);
-          lenisInstance.scrollTo(targetTop, {
-            duration: 1.2,
-            easing: smoothEase,
-            onComplete: unlockScrollspy,
-          });
+      if (targetId === 'story' && !targetElement) {
+        if (lenisInstance) {
+          lenisInstance.scrollTo(0, { immediate: true, onComplete: unlock });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'instant' });
+          unlock();
         }
       } else if (targetElement) {
-        const top = Math.max(0, targetElement.getBoundingClientRect().top + window.scrollY - 90);
-        window.scrollTo({ top, behavior: 'smooth' });
+        if (lenisInstance) {
+          lenisInstance.scrollTo(targetElement, {
+            offset: -70,
+            immediate: true,
+            onComplete: unlock,
+          });
+        } else {
+          targetElement.scrollIntoView({ behavior: 'instant', block: 'start' });
+          unlock();
+        }
       } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        unlock();
       }
     }
   };
