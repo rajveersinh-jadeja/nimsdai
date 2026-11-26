@@ -73,11 +73,7 @@ export function HorizontalScrollExpeditions() {
     let stInstance: ScrollTrigger | null = null;
 
     const ctx = gsap.context(() => {
-      // Horizontal scroll distance equals total width of the track minus the viewport width
       const getScrollDistance = () => Math.max(0, track.scrollWidth - window.innerWidth);
-
-      // Short, responsive scroll lock distance: responsive and fast (half distance or capped at 1.2x viewport height)
-      // This prevents the page from feeling trapped in an overly long scroll lock
       const getPinDuration = () => Math.min(window.innerHeight * 1.3, getScrollDistance() * 0.75);
 
       const horizontalTween = gsap.to(track, {
@@ -100,7 +96,6 @@ export function HorizontalScrollExpeditions() {
       (window as unknown as { __expeditionScrollTrigger?: ScrollTrigger | null }).__expeditionScrollTrigger = stInstance;
     }, sectionRef);
 
-    // Ensure ScrollTrigger updates after Lenis, fonts, or images resolve
     const timer1 = setTimeout(() => {
       ScrollTrigger.refresh();
     }, 100);
@@ -126,85 +121,96 @@ export function HorizontalScrollExpeditions() {
     <section
       ref={sectionRef}
       id="milestones"
-      className="relative w-screen -mx-[calc((100vw-100%)/2)] h-screen bg-[#05070c] overflow-hidden flex flex-col justify-between py-8 sm:py-12"
+      className="relative w-screen -mx-[calc((100vw-100%)/2)] min-h-screen bg-[#05070c] overflow-hidden flex flex-col justify-between py-12 sm:py-16 selection:bg-white selection:text-black"
     >
-      {/* Top Header Rail */}
-      <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 flex items-end justify-between border-b border-white/[0.08] pb-4 shrink-0">
-        <div>
-          <div className="flex items-center gap-2.5 font-heading text-xs font-semibold uppercase tracking-wider text-neutral-400">
-            <span className="w-5 h-px bg-neutral-400" />
-            <span>03 &mdash; Project Possible Expedition Reel</span>
+      {/* Top Header Rail: High-end Swiss typographic hierarchy with live progress cues */}
+      <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 flex flex-col sm:flex-row sm:items-end justify-between border-b border-white/[0.08] pb-6 shrink-0 gap-4">
+        <div className="space-y-2">
+          <div className="flex items-center gap-2.5 font-heading text-xs font-semibold uppercase tracking-widest text-neutral-400">
+            <span className="w-6 h-px bg-neutral-400" />
+            <span>03 &mdash; Project Possible Historical Reel</span>
           </div>
-          <h3 className="font-display text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-[-0.03em] text-white mt-1.5">
+          <h3 className="font-display text-3xl sm:text-5xl font-extrabold tracking-[-0.035em] text-white">
             Signature Milestones
           </h3>
+          <p className="font-body text-xs sm:text-sm text-neutral-400 max-w-xl">
+            Critical summits of the 14-peak speed run, documented with technical altitude metrics and alpine logs.
+          </p>
         </div>
-        <div className="hidden sm:flex items-center gap-2 text-xs font-mono text-neutral-400 uppercase tracking-widest">
-          <span>Scroll down to traverse reel &rarr;</span>
+
+        {/* Interaction Guidance: Accessible vector prompt, no raw emojis */}
+        <div className="flex items-center gap-3 text-xs font-mono text-neutral-400 tracking-wider">
+          <span className="w-2 h-2 rounded-full bg-white/40 animate-pulse" />
+          <span>Horizontal Expedition Reel</span>
+          <ArrowRight className="w-4 h-4 text-white/60 animate-bounce-x" weight="bold" />
         </div>
       </div>
 
-      {/* Horizontal Film Strip Track */}
-      <div className="w-full flex-1 flex items-center overflow-hidden my-auto py-2">
+      {/* Horizontal Cinematic Film Strip Track */}
+      <div className="w-full flex-1 flex items-center overflow-hidden my-auto py-6">
         <div
           ref={trackRef}
-          className="flex items-center gap-6 sm:gap-10 pl-6 sm:pl-16 pr-16 sm:pr-32 shrink-0 will-change-transform"
+          className="flex items-stretch gap-6 sm:gap-10 pl-6 sm:pl-16 pr-16 sm:pr-32 shrink-0 will-change-transform"
         >
           {PEAKS_REEL.map((peak) => (
             <div
               key={peak.name}
-              className="w-[82vw] sm:w-[500px] lg:w-[580px] shrink-0 rounded-3xl bg-[#090d16] border border-white/[0.09] overflow-hidden flex flex-col justify-between group shadow-[0_24px_60px_rgba(0,0,0,0.7)] transition-all duration-300 hover:border-white/25"
+              className="w-[84vw] sm:w-[460px] lg:w-[520px] shrink-0 rounded-2xl bg-[#090d16] border border-white/[0.09] overflow-hidden flex flex-col justify-between group shadow-[0_20px_50px_rgba(0,0,0,0.65)] hover:border-white/30 hover:shadow-[0_24px_64px_rgba(0,0,0,0.85)] transition-all duration-300 relative"
             >
-              {/* Visual Upper: 16:10 Cinema Aspect Photo */}
+              {/* Visual Upper: Cinema 16:10 Ratio with Deep Gradient Masking */}
               <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#04060a]">
                 <img
                   src={peak.image}
-                  alt={peak.name}
-                  className="w-full h-full object-cover object-[center_30%] contrast-[1.12] brightness-[0.88] transition-transform duration-700 group-hover:scale-103"
+                  alt={`Nimsdai at ${peak.name}`}
+                  className="w-full h-full object-cover object-[center_28%] contrast-[1.12] brightness-[0.88] transition-transform duration-700 ease-out group-hover:scale-103"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#090d16] via-transparent to-black/35 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#090d16] via-[#090d16]/30 to-black/40 pointer-events-none" />
 
-                {/* Watermark Peak Number */}
-                <div className="absolute top-4 left-6 select-none pointer-events-none font-display text-4xl sm:text-6xl font-extrabold text-white/20">
+                {/* Summit Index Number: High-fashion watermark */}
+                <div className="absolute top-4 left-5 select-none pointer-events-none font-display text-4xl sm:text-5xl font-extrabold text-white/20 tracking-tighter">
                   {peak.number}
                 </div>
 
-                {/* Altitude Pill Tag */}
-                <div className="absolute top-4 sm:top-5 right-5 sm:right-6 px-3.5 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-white font-mono text-xs sm:text-sm font-semibold tabular-nums shadow-lg">
+                {/* Altitude Metric Badge: High contrast backdrop pill */}
+                <div className="absolute top-4 right-5 px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-white font-mono text-xs font-semibold tabular-nums shadow-md">
                   {peak.altitude}
                 </div>
               </div>
 
-              {/* Content Lower */}
-              <div className="p-5 sm:p-7 flex flex-col justify-between flex-1 space-y-3.5">
-                <div>
-                  <div className="flex items-center justify-between text-xs text-neutral-400 font-heading">
-                    <span>{peak.phase}</span>
-                    <span className="flex items-center gap-1 font-mono text-neutral-400">
-                      <CalendarBlank className="w-3.5 h-3.5" />
+              {/* Card Body: Swiss Typographic Balance & Contrast */}
+              <div className="p-6 sm:p-7 flex flex-col justify-between flex-1 space-y-4">
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-xs font-heading">
+                    <span className="text-neutral-400 font-medium">{peak.phase}</span>
+                    <span className="flex items-center gap-1.5 font-mono text-neutral-400">
+                      <CalendarBlank className="w-3.5 h-3.5 text-neutral-400" weight="bold" />
                       {peak.date}
                     </span>
                   </div>
 
-                  <h4 className="font-display text-2xl sm:text-3xl font-extrabold text-white tracking-tight mt-1.5">
+                  <h4 className="font-display text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
                     {peak.name}
                   </h4>
 
-                  <p className="font-body text-xs sm:text-sm text-neutral-300 leading-relaxed mt-2 line-clamp-3 sm:line-clamp-none">
+                  <p className="font-body text-xs sm:text-sm text-neutral-300 leading-relaxed line-clamp-3">
                     {peak.description}
                   </p>
                 </div>
 
-                <div className="pt-3.5 border-t border-white/[0.06] flex items-center justify-between">
+                {/* Lower Action Footer */}
+                <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between">
                   <span className="flex items-center gap-1.5 text-xs text-neutral-400">
                     <MapPin className="w-3.5 h-3.5 text-neutral-400" weight="duotone" />
-                    {peak.country}
+                    <span>{peak.country}</span>
                   </span>
 
-                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-white group-hover:translate-x-1 transition-transform">
-                    <span>Expedition Log</span>
-                    <ArrowRight className="w-3.5 h-3.5" weight="bold" />
-                  </span>
+                  <a
+                    href="#story"
+                    className="inline-flex items-center gap-2 text-xs font-semibold text-white px-3 py-1.5 rounded-full bg-white/10 hover:bg-white hover:text-black transition-all duration-200 group/btn"
+                  >
+                    <span>Summit Report</span>
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5" weight="bold" />
+                  </a>
                 </div>
               </div>
             </div>
@@ -212,12 +218,14 @@ export function HorizontalScrollExpeditions() {
         </div>
       </div>
 
-      {/* Bottom Rail Summary */}
-      <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 flex items-center justify-between border-t border-white/[0.08] pt-3 text-[11px] sm:text-xs font-mono text-neutral-400 shrink-0">
-        <span>PROJECT POSSIBLE &middot; 14 PEAKS</span>
-        <span>RECORD: 189 DAYS &middot; 0 CASUALTIES</span>
+      {/* Bottom Rail: Editorial Summary Line */}
+      <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 flex flex-col sm:flex-row items-center justify-between border-t border-white/[0.08] pt-4 text-xs font-mono text-neutral-400 gap-2 shrink-0">
+        <span className="tracking-widest">PROJECT POSSIBLE &middot; 14 PEAKS &middot; 8,000M</span>
+        <span className="text-white/60">WORLD RECORD: 189 DAYS &middot; 0 EXPEDITION LOSSES</span>
       </div>
     </section>
+  );
+}
   );
 }
 
