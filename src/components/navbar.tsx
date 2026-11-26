@@ -22,6 +22,7 @@ export const defaultNavItems: NavItem[] = [
   { label: '14 Peaks', href: '#peaks' },
   { label: 'K2 Winter', href: '#k2' },
   { label: 'Foundation', href: '#foundation' },
+  { label: 'Inquiries', href: '#inquiries' },
 ];
 
 export function Navbar({

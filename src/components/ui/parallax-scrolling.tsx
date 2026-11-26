@@ -74,32 +74,88 @@ export function ParallaxComponent({
           0.6
         );
 
-        // 2. High-Altitude Scroll-Driven Parallax Depth Sequence
-        const scrollTl = gsap.timeline({
+        // 2. High-Altitude Continuous Scroll-Story Sequence (Valley to Summit Pin Reveal)
+        const storyPinTl = gsap.timeline({
           scrollTrigger: {
-            trigger: '.parallax__header',
-            start: "top top",
-            end: "bottom top",
-            scrub: 0.5,
+            trigger: '.hero-story-pin',
+            start: 'top top',
+            end: '+=180%',
+            pin: true,
+            scrub: 0.8,
+            anticipatePin: 1,
+            onUpdate: (self) => {
+              // Smooth live altitude counter from 2,860m (Lukla / Valley) to 8,848m (Everest / Summit)
+              const altEl = document.querySelector('[data-live-altitude]');
+              if (altEl) {
+                const currentAlt = Math.round(2860 + (8848 - 2860) * self.progress);
+                altEl.textContent = `${currentAlt.toLocaleString()}M`;
+              }
+            }
           }
         });
 
-        // Mountain photo slowly tracks with depth across the full scroll
-        scrollTl.to('[data-hero-img]', {
-          yPercent: 14,
-          scale: 1.07,
+        // Step 1: Landscape (Screen 1) zooms in subtly
+        storyPinTl.to('[data-hero-screen1-bg]', {
+          scale: 1.18,
           ease: 'none',
-          duration: 1.0,
+          duration: 0.45,
         }, 0);
 
-        // Crucial fix: The entire bottom text overlay lifts and dissolves completely into mist
-        scrollTl.to('[data-hero-scroll-overlay]', {
-          y: -50,
+        // Step 2: NIMSDAI letters spread (letterSpacing / scale) and fade away
+        storyPinTl.to('[data-hero-screen1-title]', {
+          scale: 1.25,
+          letterSpacing: '0.35em',
           opacity: 0,
-          filter: 'blur(10px)',
-          ease: 'power2.out',
-          duration: 0.28,
+          filter: 'blur(16px)',
+          ease: 'power2.inOut',
+          duration: 0.35,
         }, 0);
+
+        storyPinTl.to('[data-hero-screen1-meta]', {
+          opacity: 0,
+          y: -30,
+          ease: 'power2.in',
+          duration: 0.25,
+        }, 0);
+
+        // Step 3: Thick clouds and atmospheric alpine mist rise to cover Screen 1
+        storyPinTl.fromTo(
+          '[data-hero-mist-layer]',
+          { opacity: 0, yPercent: 40 },
+          { opacity: 1, yPercent: 0, ease: 'power2.inOut', duration: 0.35 },
+          0.15
+        );
+
+        // Step 4: Screen 2 (The Summit Shot & The Climber) clears from the mist and rises with parallax
+        storyPinTl.fromTo(
+          '[data-hero-screen2-wrap]',
+          { opacity: 0, yPercent: 12, scale: 0.96 },
+          { opacity: 1, yPercent: 0, scale: 1.0, ease: 'power2.out', duration: 0.45 },
+          0.4
+        );
+
+        // Mist gently dissipates as summit establishes
+        storyPinTl.to('[data-hero-mist-layer]', {
+          opacity: 0,
+          duration: 0.3,
+          ease: 'power1.out'
+        }, 0.55);
+
+        // Climber photo subtle parallax lift
+        storyPinTl.to('[data-hero-screen2-img]', {
+          yPercent: -6,
+          scale: 1.04,
+          ease: 'none',
+          duration: 0.45
+        }, 0.5);
+
+        // Screen 2 Typography and CTA smoothly fade & slide in
+        storyPinTl.fromTo(
+          '[data-hero-screen2-content]',
+          { opacity: 0, y: 40, filter: 'blur(8px)' },
+          { opacity: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.35 },
+          0.65
+        );
 
         // 3. Section-by-Section Scroll Reveal Animations
         // Section 1: Biography & Heritage reveal
@@ -209,130 +265,178 @@ export function ParallaxComponent({
 
   return (
     <div className={`parallax ${className}`.trim()} ref={parallaxRef}>
-      {/* Hero Section with Towering Alpine Apex & Architectural Serif Typography */}
-      <section className="parallax__header relative w-full h-[100vh] overflow-hidden bg-[#04060a]">
-        <div className="parallax__visuals relative w-full h-full">
-          <div className="parallax__black-line-overflow"></div>
-
-          {/* Visual Canvas Container */}
-          <div data-parallax-layers className="parallax__layers relative w-full h-full overflow-hidden">
-
-            {/* Layer 1: Dramatic Himalayan Snowy Summit (Ascent Peak) */}
-            <div className="absolute inset-0 w-full h-full overflow-hidden">
-              <img
-                data-hero-img
-                src="/images/himalaya-peak-bg.jpg"
-                loading="eager"
-                alt="Towering snowy Himalayan peak"
-                className="w-full h-full object-cover object-[center_35%] transform-gpu will-change-transform filter brightness-[0.82] contrast-[1.18]"
-              />
-              {/* Deep atmospheric dark vignettes */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#05070c] via-transparent to-[#04060a]/85 pointer-events-none" />
-              <div className="absolute inset-0 bg-gradient-to-b from-[#04060a]/70 via-transparent to-[#05070c] pointer-events-none" />
-            </div>
-
-            {/* Layer 2: Towering Architectural Serif Headline Across the Mountain Peak */}
-            <div
-              data-hero-scroll-overlay
-              className="absolute inset-0 z-20 pointer-events-none flex flex-col justify-between items-center p-6 sm:p-12 md:p-16"
-            >
-              {/* Top Subtitle Rail */}
-              <div data-hero-entrance-left className="w-full max-w-7xl flex items-center justify-between text-xs font-mono text-neutral-400 tracking-[0.25em] uppercase pt-16 sm:pt-20">
-                <span>14 Peaks &middot; 8,000m</span>
-                <span className="hidden sm:inline">Project Possible</span>
-              </div>
-
-              {/* Towering Serif Title: NIMSDAL piercing the peak like ASCENT */}
-              <div data-hero-entrance-left className="text-center w-full px-4 select-none my-auto">
-                <h1
-                  className="font-serif text-[18vw] sm:text-[19vw] lg:text-[200px] xl:text-[240px] font-normal tracking-[0.08em] sm:tracking-[0.14em] text-transparent bg-clip-text bg-gradient-to-b from-white via-[#f0f4f8] to-white/40 leading-none drop-shadow-[0_20px_50px_rgba(0,0,0,0.95)]"
-                >
-                  NIMSDAI
-                </h1>
-                <p className="font-heading text-xs sm:text-sm md:text-base font-medium uppercase tracking-[0.35em] text-neutral-300 mt-3 sm:mt-5 drop-shadow-md">
-                  14 PEAKS &middot; NOTHING IS IMPOSSIBLE &middot; 189 DAYS
-                </p>
-              </div>
-
-              {/* Bottom Subtle Scroll Indicator */}
-              <div data-hero-entrance-right className="flex flex-col items-center gap-2 text-neutral-400 text-xs font-mono tracking-widest pb-4">
-                <span>SCROLL TO EXPLORE</span>
-                <span className="w-px h-8 bg-gradient-to-b from-white/60 to-transparent animate-pulse" />
-              </div>
-            </div>
-
+      {/* Unified 2-Screen Scroll Story: Screen 1 (The Valley & Stupa) -> Screen 2 (The Summit & The Climber) */}
+      <section className="hero-story-pin relative w-full h-[100vh] overflow-hidden bg-[#04060a]">
+        
+        {/* ========================================================= */}
+        {/* SCREEN 1: The Valley / Landscape with Towering NIMSDAI */}
+        {/* ========================================================= */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden">
+          {/* Valley Background with Cool Blue/Alpine Slate color grade */}
+          <div data-hero-screen1-bg className="absolute inset-0 w-full h-full transform-gpu will-change-transform">
+            <img
+              data-hero-img
+              src="/images/himalaya-peak-bg.jpg"
+              loading="eager"
+              alt="Himalayan mountain landscape and towering alpine peaks"
+              className="w-full h-full object-cover object-[center_35%] filter brightness-[0.78] contrast-[1.14] saturate-[0.88] hue-rotate-[-8deg]"
+            />
+            {/* Deep atmospheric cool obsidian vignettes */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#04060a] via-transparent to-[#04060a]/80 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#04060a]/75 via-transparent to-[#04060a]/90 pointer-events-none" />
           </div>
 
-          <div className="parallax__fade"></div>
+          {/* Screen 1 Typography Overlay */}
+          <div className="absolute inset-0 z-20 pointer-events-none flex flex-col justify-between items-center p-6 sm:p-12 md:p-16">
+            
+            {/* Top Subtitle Rail with Live Altitude Counter */}
+            <div
+              data-hero-entrance-left
+              data-hero-screen1-meta
+              className="w-full max-w-7xl flex items-center justify-between text-xs font-mono text-neutral-400 tracking-[0.25em] uppercase pt-16 sm:pt-20"
+            >
+              <div className="flex items-center gap-2 text-cyan-200/90">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
+                <span>14 PEAKS &middot; 8,000M</span>
+              </div>
+              
+              {/* Dynamic Live Altitude Telemetry */}
+              <div className="px-3.5 py-1 rounded-full bg-black/60 border border-white/15 backdrop-blur-md flex items-center gap-2">
+                <span className="text-[10px] text-neutral-400">ALTITUDE:</span>
+                <span data-live-altitude className="text-white font-bold tracking-widest">2,860M</span>
+              </div>
+
+              <span className="hidden sm:inline text-neutral-400">PROJECT POSSIBLE</span>
+            </div>
+
+            {/* Giant Towering Serif Name (Showed big only here on screen 1) */}
+            <div
+              data-hero-entrance-left
+              data-hero-screen1-title
+              className="text-center w-full px-4 select-none my-auto transform-gpu will-change-transform"
+            >
+              <h1 className="font-serif text-[18vw] sm:text-[19vw] lg:text-[200px] xl:text-[230px] font-normal tracking-[0.08em] sm:tracking-[0.14em] text-transparent bg-clip-text bg-gradient-to-b from-white via-[#f0f4f8] to-white/40 leading-none drop-shadow-[0_24px_60px_rgba(0,0,0,0.98)]">
+                NIMSDAI
+              </h1>
+              <p className="font-heading text-xs sm:text-sm md:text-base font-medium uppercase tracking-[0.35em] text-neutral-300 mt-4 drop-shadow-md">
+                14 PEAKS &middot; 8,000M
+              </p>
+            </div>
+
+            {/* Bottom Scroll Prompt */}
+            <div
+              data-hero-entrance-right
+              data-hero-screen1-meta
+              className="flex flex-col items-center gap-2 text-neutral-400 text-xs font-mono tracking-widest pb-4"
+            >
+              <span>SCROLL TO EXPLORE</span>
+              <span className="w-px h-8 bg-gradient-to-b from-white/60 to-transparent animate-pulse" />
+            </div>
+          </div>
         </div>
+
+        {/* ========================================================= */}
+        {/* TRANSITION LAYER: Volumetric Alpine Mist & Cloud Fog */}
+        {/* ========================================================= */}
+        <div
+          data-hero-mist-layer
+          className="absolute inset-0 z-25 pointer-events-none opacity-0 transform-gpu will-change-transform"
+        >
+          {/* Dense multi-layered cloud/fog gradient */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#04060a] via-[#09101d]/90 to-[#04060a]" />
+          <div className="absolute inset-0 backdrop-blur-xl bg-slate-950/40" />
+          <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#04060a] via-[#070b14]/95 to-transparent" />
+        </div>
+
+        {/* ========================================================= */}
+        {/* SCREEN 2: The Summit Reveal & The Climber ("Nothing Is Impossible") */}
+        {/* ========================================================= */}
+        <div
+          data-hero-screen2-wrap
+          className="absolute inset-0 z-30 w-full h-full overflow-hidden opacity-0 transform-gpu will-change-transform flex flex-col justify-between p-6 sm:p-12 md:p-16"
+        >
+          {/* Background Summit Climber Photo with Matching Cool Blue Grade */}
+          <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
+            <img
+              data-hero-screen2-img
+              src="/images/nimsdai-hero.jpg"
+              alt="Nirmal Nims Purja MBE at the Himalayan summit ridge"
+              className="w-full h-full object-cover object-[center_28%] transform-gpu will-change-transform filter brightness-[0.80] contrast-[1.16] saturate-[0.92] hue-rotate-[-4deg]"
+            />
+            {/* Cool atmospheric vignettes matching screen 1 */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#04060a] via-[#04060a]/30 to-[#04060a]/80 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#04060a]/90 via-[#04060a]/40 to-transparent pointer-events-none" />
+          </div>
+
+          {/* Screen 2 Top Rail */}
+          <div className="relative z-10 w-full max-w-7xl mx-auto flex items-center justify-between text-xs font-mono text-neutral-300 tracking-[0.25em] uppercase pt-16 sm:pt-20">
+            <span className="text-cyan-300 font-bold">THE SUMMIT ZONE &middot; 8,848M</span>
+            <div className="px-3.5 py-1 rounded-full bg-black/60 border border-white/20 backdrop-blur-md flex items-center gap-2">
+              <span className="text-[10px] text-neutral-400">STATUS:</span>
+              <span className="text-emerald-400 font-bold">SUMMIT SECURED</span>
+            </div>
+            <span className="hidden sm:inline text-neutral-400">189 DAYS RECORD</span>
+          </div>
+
+          {/* Screen 2 Core Narrative Reveal: "Nothing Is Impossible" */}
+          <div
+            data-hero-screen2-content
+            className="relative z-10 w-full max-w-7xl mx-auto my-auto py-8 flex flex-col items-start justify-center text-left pointer-events-auto space-y-6"
+          >
+            {/* Badge Pill */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-white font-mono text-xs">
+              <span className="w-2 h-2 rounded-full bg-cyan-400" />
+              <span>Project Possible &middot; 14 &times; 8,000m Peaks</span>
+            </div>
+
+            {/* Serif Headline: "Nothing Is Impossible" */}
+            <h2 className="font-serif text-5xl sm:text-7xl lg:text-8xl xl:text-9xl font-normal tracking-tight text-white leading-[0.95] max-w-4xl drop-shadow-[0_20px_40px_rgba(0,0,0,0.9)]">
+              Nothing Is<br />
+              <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-neutral-400">Impossible</span>
+            </h2>
+
+            {/* Sans Description */}
+            <p className="font-body text-base sm:text-lg lg:text-xl text-neutral-200/90 leading-relaxed max-w-2xl font-light drop-shadow-md">
+              From the Gurkhas and UK Special Boat Service to conquering every 8,000-meter peak in 6 months and 6 days. Redefining human endurance at the edge of the Death Zone.
+            </p>
+
+            {/* CTAs and Badges */}
+            <div className="flex flex-wrap items-center gap-4 pt-2">
+              <a
+                href="#peaks"
+                className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-white text-black font-heading text-xs sm:text-sm font-bold tracking-tight hover:bg-neutral-200 transition-all duration-300 shadow-2xl hover:scale-[1.03] active:scale-95 group/btn"
+              >
+                <span>Explore 14 Peaks</span>
+                <span className="w-6 h-6 rounded-full bg-black/10 group-hover/btn:bg-black group-hover/btn:text-white flex items-center justify-center transition-colors">
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-0.5" weight="bold" />
+                </span>
+              </a>
+
+              <a
+                href="#story"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/25 text-white font-heading text-xs sm:text-sm font-semibold transition-all duration-200 backdrop-blur-md"
+              >
+                <span>The Story of Nimsdai</span>
+              </a>
+            </div>
+          </div>
+
+          {/* Screen 2 Bottom Telemetry / Indicators */}
+          <div className="relative z-10 w-full max-w-7xl mx-auto flex items-center justify-between text-xs font-mono text-neutral-400 tracking-widest pb-2">
+            <span>SCROLL TO PROCEED TO CHRONICLE</span>
+            <div className="flex items-center gap-4">
+              <span>0 CASUALTIES</span>
+              <span>&middot;</span>
+              <span>HISTORIC FIRST</span>
+            </div>
+          </div>
+        </div>
+
       </section>
 
       {/* Main Content Sections */}
       <section className="parallax__content w-full bg-[#05070c] text-white">
         <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 space-y-32 sm:space-y-44 lg:space-y-52">
-
-          {/* Dedicated Cinematic Expedition Showcase: Nimsdai's Iconic Summit Photo & Bio */}
-          <div data-reveal className="relative rounded-3xl bg-[#080d16] border border-white/[0.09] overflow-hidden grid grid-cols-1 lg:grid-cols-12 items-stretch shadow-[0_24px_64px_rgba(0,0,0,0.7)] group">
-            {/* Left Narrative Column */}
-            <div className="lg:col-span-7 p-8 sm:p-12 lg:p-14 flex flex-col justify-between space-y-8 relative z-10">
-              <div className="space-y-4">
-                <div className="flex items-center gap-2.5 font-heading text-xs font-semibold uppercase tracking-[0.2em] text-neutral-400">
-                  <span className="w-6 h-px bg-white/40" />
-                  <span>Mountaineer &middot; Leader &middot; Pioneer</span>
-                </div>
-                <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-[-0.035em] text-white leading-[1.05]">
-                  Nirmal Purja MBE
-                </h2>
-                <p className="font-body text-sm sm:text-base text-neutral-300 leading-relaxed max-w-xl">
-                  {tagline}
-                </p>
-              </div>
-
-              {/* Badges & Actions */}
-              <div className="space-y-6 pt-4 border-t border-white/[0.08]">
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className="px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-white font-mono text-xs">
-                    Former UK SBS Special Forces
-                  </span>
-                  <span className="px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-white font-mono text-xs">
-                    Gurkha Brotherhood
-                  </span>
-                  <span className="px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-white font-mono text-xs">
-                    0 Expedition Casualties
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <a
-                    href="#peaks"
-                    className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white text-black font-heading text-xs sm:text-sm font-bold tracking-tight hover:bg-neutral-200 transition-all duration-300 shadow-xl group/btn hover:scale-[1.02] active:scale-95"
-                  >
-                    <span>Explore 14 Peaks</span>
-                    <span className="w-6 h-6 rounded-full bg-black/10 group-hover/btn:bg-black group-hover/btn:text-white flex items-center justify-center transition-colors">
-                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-0.5" weight="bold" />
-                    </span>
-                  </a>
-                  <a
-                    href="#story"
-                    className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-white font-heading text-xs sm:text-sm font-semibold transition-all duration-200"
-                  >
-                    <span>Read Chronicle</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Column: Iconic High-Resolution Portrait with Summit Ridge Gear */}
-            <div className="lg:col-span-5 relative min-h-[360px] lg:min-h-full overflow-hidden border-t lg:border-t-0 lg:border-l border-white/[0.08]">
-              <img
-                src={heroImage}
-                alt="Nirmal Nims Purja MBE in expedition gear against Himalayan mountain vista"
-                className="w-full h-full object-cover object-[center_25%] contrast-[1.12] brightness-[0.88] transition-transform duration-1000 group-hover:scale-103"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#080d16] via-transparent to-transparent lg:hidden pointer-events-none" />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#080d16] via-transparent to-transparent hidden lg:block pointer-events-none" />
-            </div>
-          </div>
 
           {/* Section 1: Our Story (#story) — Bold Magazine Editorial & Timeline Layout */}
           <div id="story" className="scroll-mt-28 space-y-16 sm:space-y-24 relative">
